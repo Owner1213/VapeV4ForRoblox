@@ -6066,6 +6066,20 @@ run(function()
 	})
 end)
 
+run(function() 
+	local iy = {Enabled = false}
+
+	iy = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
+		Name = "InfiniteYield",
+		Function = function(callback)
+            if callback then
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+				iy.ToggleButton(true)
+			end
+		end
+	})
+end)
+
 run(function()
 	local FPS = {}
 	local FPSLabel
