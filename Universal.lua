@@ -6103,7 +6103,7 @@ end)
 run(function() 
 	local reset = {Enabled = false}
 
-	reset = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	reset = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
         Name = "Reset",
         Function = function(callback) 
 			if callback then
