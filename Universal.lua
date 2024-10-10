@@ -6080,6 +6080,25 @@ run(function()
 	})
 end)
 
+run(function() 
+	local infjump = {Enabled = false}
+	local con;
+
+	infjump = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
+        Name = "InfiniteJump",
+        Function = function(callback) 
+			if callback then 
+				con = game:GetService("UserInputService").JumpRequest:Connect(function()
+					game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):ChangeState("Jumping")
+				end)
+			else
+				con:Disconnect()
+				con = nil
+			end
+		end	
+	})
+end)
+
 run(function()
 	local FPS = {}
 	local FPSLabel
