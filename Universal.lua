@@ -10,6 +10,7 @@ local replicatedStorage = game:GetService("ReplicatedStorage")
 local tweenService = game:GetService("TweenService")
 local gameCamera = workspace.CurrentCamera
 local lplr = playersService.LocalPlayer
+local hum = lplr.Character:FindFirstChildWhichIsA("Humanoid")
 local vapeConnections = {}
 local vapeCachedAssets = {}
 local vapeTargetInfo = shared.VapeTargetInfo
@@ -6088,14 +6089,33 @@ run(function()
         Name = "InfiniteJump",
         Function = function(callback) 
 			if callback then 
-				con = game:GetService("UserInputService").JumpRequest:Connect(function()
-					game:GetService("Players").LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):ChangeState("Jumping")
+				con = inputService.JumpRequest:Connect(function()
+					lplr.Character:FindFirstChildWhichIsA("Humanoid"):ChangeState("Jumping")
 				end)
 			else
 				con:Disconnect()
 				con = nil
 			end
 		end	
+	})
+end)
+
+run(function() 
+	local reset = {Enabled = false}
+
+	reset = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+        Name = "Reset",
+        Function = function(callback) 
+			if callback then
+				if entityLibrary.isAlive then
+					entityLibrary.character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
+					entityLibrary.character.Humanoid.Health = 0
+				else
+					warningNotification("Reset", "Character is not alive or is nil.", 5)
+				end
+                reset.ToggleButton(true)
+			end
+		end
 	})
 end)
 
