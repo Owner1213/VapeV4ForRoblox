@@ -6090,7 +6090,7 @@ run(function()
         Function = function(callback) 
 			if callback then 
 				con = inputService.JumpRequest:Connect(function()
-					lplr.Character:FindFirstChildWhichIsA("Humanoid"):ChangeState("Jumping")
+					lplr.Character:FindFirstChildWhichIsA("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
 				end)
 			else
 				con:Disconnect()
