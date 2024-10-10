@@ -31,6 +31,7 @@ local vapeAssetTable = {
 	["vape/assets/CombatIcon.png"] = "rbxassetid://13350770192",
 	["vape/assets/DownArrow.png"] = "rbxassetid://13350770749",
 	["vape/assets/ExitIcon1.png"] = "rbxassetid://13350771140",
+	["vape/assets/ExploitIcon.png"] = "rbxassetid://104595911114057",
 	["vape/assets/FriendsIcon.png"] = "rbxassetid://13350771464",
 	["vape/assets/HoverArrow.png"] = "rbxassetid://13350772201",
 	["vape/assets/HoverArrow2.png"] = "rbxassetid://13350772588",
@@ -313,6 +314,11 @@ local Profiles = GuiLibrary.CreateWindow2({
 	Icon = "vape/assets/ProfilesIcon.png",
 	IconSize = 19
 })
+local Exploit = GuiLibrary.CreateWindow({
+	Name = "Exploit",
+	Icon = "vape/assets/ExploitIcon.png",
+	IconSize = 16
+})
 GUI.CreateDivider()
 GUI.CreateButton({
 	Name = "Combat",
@@ -356,6 +362,13 @@ GUI.CreateButton({
 GUI.CreateButton({
 	Name = "Profiles",
 	Function = function(callback) Profiles.SetVisible(callback) end,
+})
+GUI.CreateDivider("CUSTOM")
+GUI.CreateButton({
+	Name = "Exploit",
+	Function = function(callback) Exploit.SetVisible(callback) end,
+	Icon = "vape/assets/ExploitIcon.png",
+	IconSize = 16
 })
 
 local FriendsTextListTable = {
@@ -1575,7 +1588,8 @@ local windowSortOrder = {
 	WorldButton = 5,
 	FriendsButton = 6,
 	TargetsButton = 7,
-	ProfilesButton = 8
+	ProfilesButton = 8,
+	ExploitButton = 9
 }
 local windowSortOrder2 = {"Combat", "Blatant", "Render", "Utility", "World"}
 
@@ -1900,10 +1914,11 @@ GUISettings.CreateButton2({
 			WorldWindow = 6,
 			FriendsWindow = 7,
 			TargetsWindow = 8,
-			ProfilesWindow = 9,
-			["Text GUICustomWindow"] = 10,
-			TargetInfoCustomWindow = 11,
-			RadarCustomWindow = 12,
+			ExploitWindow = 9,
+			ProfilesWindow = 10,
+			["Text GUICustomWindow"] = 11,
+			TargetInfoCustomWindow = 12,
+			RadarCustomWindow = 13,
 		}
 		local storedpos = {}
 		local num = 6
