@@ -6098,6 +6098,7 @@ run(function()
 			end
 		end	
 	})
+	infjump.Object.Visible = false
 end)
 
 run(function() 
