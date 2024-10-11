@@ -6076,6 +6076,8 @@ run(function()
             if callback then
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 				iy.ToggleButton(true)
+				task.wait()
+				GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteYieldButton.Visible = false
 			end
 		end
 	})
@@ -6098,7 +6100,6 @@ run(function()
 			end
 		end	
 	})
-	GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteJumpButton.Visible = false
 end)
 
 run(function() 
