@@ -246,7 +246,7 @@ local saveSettingsLoop = coroutine.create(function()
 	if inputService.TouchEnabled then return end
 	repeat
 		GuiLibrary.SaveSettings()
-        task.wait(10)
+        task.wait(1)
 	until not vapeInjected or not GuiLibrary
 end)
 
