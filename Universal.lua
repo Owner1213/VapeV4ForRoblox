@@ -6079,7 +6079,6 @@ run(function()
 			end
 		end
 	})
-	GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteJumpButton.Visible = false
 end)
 
 run(function() 
@@ -6099,6 +6098,7 @@ run(function()
 			end
 		end	
 	})
+	GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteJumpButton.Visible = false
 end)
 
 run(function() 
