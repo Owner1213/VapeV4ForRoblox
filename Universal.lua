@@ -6134,7 +6134,7 @@ run(function()
 
 
 	fixcam = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
-        Name = "FixCam",
+        Name = "Fixcam",
         Function = function(callback)
 			if callback then 
 				camsbj = gameCamera.CameraSubject
