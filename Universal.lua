@@ -6067,6 +6067,10 @@ run(function()
 	})
 end)
 
+local function SetOptionsButtonVisibleFromWindow(window, button, val) 
+	GuiLibrary["MainGui"].ScaledGui.ClickGui[window].ScrollingFrame[button].Visible = val or true
+end
+
 run(function() 
 	local iy = {Enabled = false}
 
@@ -6098,8 +6102,7 @@ run(function()
 			end
 		end	
 	})
-	--infjump.Object.Visible = false
-	print(infjump.Object ~= nil)
+	SetOptionsButtonVisibleFromWindow("Exploit", "InfiniteJump", false)
 end)
 
 run(function() 
