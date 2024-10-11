@@ -18,6 +18,7 @@ local vapeInjected = true
 table.insert(vapeConnections, workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
 	gameCamera = workspace.CurrentCamera or workspace:FindFirstChildWhichIsA("Camera")
 end))
+shared.iyload = false
 local isfile = isfile or function(file)
 	local suc, res = pcall(function() return readfile(file) end)
 	return suc and res ~= nil
@@ -6067,6 +6068,7 @@ run(function()
 	})
 end)
 
+
 run(function() 
 	local iy = {Enabled = false}
 
@@ -6076,11 +6078,15 @@ run(function()
             if callback then
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 				iy.ToggleButton(true)
+				shared.iyload = true
 				task.wait()
 				GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteYieldButton.Visible = false
 			end
 		end
 	})
+	if shared.iyload then 
+		GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteYieldButton.Visible = false
+	end
 end)
 
 run(function() 
