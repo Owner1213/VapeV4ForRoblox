@@ -6134,9 +6134,6 @@ run(function()
         Name = "FixCam",
         Function = function(callback)
 			if callback then 
-				if Freecam.Enabled then
-					Freecam.ToggleButton(true)
-				end
 				gameCamera:remove()
 				task.wait(.1)
 				repeat task.wait() until lplr.Character ~= nil
