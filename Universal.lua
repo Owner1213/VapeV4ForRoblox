@@ -6099,6 +6099,7 @@ run(function()
 		end	
 	})
 	--infjump.Object.Visible = false
+	print(infjump.Object ~= nil)
 end)
 
 run(function() 
