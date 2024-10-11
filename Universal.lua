@@ -6127,6 +6127,31 @@ run(function()
 	})
 end)
 
+run(function() 
+	local fixcam = {Enabled = false}
+
+	fixcam = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
+        Name = "FixCam",
+        Function = function(callback)
+			if callback then 
+				if Freecam.Enabled then
+					Freecam.ToggleButton(true)
+				end
+				gameCamera:remove()
+				task.wait(.1)
+				repeat task.wait() until lplr.Character ~= nil
+				workspace.CurrentCamera.CameraSubject = lplr.Character.HumanoidRootPart
+				workspace.CurrentCamera.CameraType = "Custom"
+				lplr.CameraMinZoomDistance = 0.5
+				lplr.CameraMaxZoomDistance = 400
+				lplr.CameraMode = "Classic"
+				lplr.Character.Head.Anchored = false
+				fixcam.ToggleButton(true)
+			end
+		end
+	})
+end)
+
 run(function()
 	local FPS = {}
 	local FPSLabel
