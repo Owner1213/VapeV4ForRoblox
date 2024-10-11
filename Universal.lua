@@ -6129,19 +6129,27 @@ end)
 
 run(function() 
 	local fixcam = {Enabled = false}
+	
+	local camsbj, camtype, cmzd, cmxzd, cammode;
+
 
 	fixcam = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
         Name = "FixCam",
         Function = function(callback)
 			if callback then 
+				camsbj = gameCamera.CameraSubject
+				camtype = gameCamera.CameraType
+                cmzd = lplr.CameraMinZoomDistance
+                cmxzd = lplr.CameraMaxZoomDistance
+				cammode = lplr.CameraMode
 				gameCamera:remove()
 				task.wait(.1)
 				repeat task.wait() until lplr.Character ~= nil
-				workspace.CurrentCamera.CameraSubject = lplr.Character:FindFirstChildWhichIsA("Humanoid")
-				workspace.CurrentCamera.CameraType = "Custom"
-				lplr.CameraMinZoomDistance = 0.5
-				lplr.CameraMaxZoomDistance = 400
-				lplr.CameraMode = "Classic"
+				gameCamera.CameraSubject = camsbj or lplr.Character:FindFirstChildWhichIsA("Humanoid")
+				gameCamera.CameraType = camtype or "Custom"
+				lplr.CameraMinZoomDistance = cmzd or 0.5
+				lplr.CameraMaxZoomDistance = cmxzd or 400
+				lplr.CameraMode = cammode or "Classic"
 				lplr.Character.Head.Anchored = false
 				fixcam.ToggleButton(true)
 			end
