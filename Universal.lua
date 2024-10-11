@@ -6068,7 +6068,7 @@ run(function()
 end)
 
 local function SetOptionsButtonVisibleFromWindow(window, button, val) 
-	GuiLibrary["MainGui"].ScaledGui.ClickGui[window].ScrollingFrame[button].Visible = val or true
+	GuiLibrary["MainGui"].ScaledGui.ClickGui[window].ScrollingFrame[button.."Button"].Visible = val or true
 end
 
 run(function() 
