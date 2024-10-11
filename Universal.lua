@@ -6137,7 +6137,7 @@ run(function()
 				gameCamera:remove()
 				task.wait(.1)
 				repeat task.wait() until lplr.Character ~= nil
-				workspace.CurrentCamera.CameraSubject = lplr.Character.HumanoidRootPart
+				workspace.CurrentCamera.CameraSubject = lplr.Character:FindFirstChildWhichIsA("Humanoid")
 				workspace.CurrentCamera.CameraType = "Custom"
 				lplr.CameraMinZoomDistance = 0.5
 				lplr.CameraMaxZoomDistance = 400
