@@ -1802,40 +1802,6 @@ GUISettings.CreateSlider({
 	Default = 10
 })
 
-local fi = {}
-
--- Fill the dropdown list with font names
-for i, v in ipairs(Enum.Font:GetEnumItems()) do
-    table.insert(fi, v.Name)
-end
-
--- Ensure GUISettings.CreateDropdown exists before using it
-if GUISettings.CreateDropdown then
-    GUISettings.CreateDropdown({
-        Name = "GUI Font",
-        List = fi,
-        Function = function(val)
-            -- Make sure val is valid and corresponds to a Font Enum
-            local selectedFont = nil
-            for _, fontEnum in ipairs(Enum.Font:GetEnumItems()) do
-                if fontEnum.Name == val then
-                    selectedFont = fontEnum
-                    break
-                end
-            end
-            
-            -- Assign selectedFont to shared.deffont if valid
-            if selectedFont then
-                shared.deffont = selectedFont
-            else
-                warn("Selected font is invalid or not found: " .. tostring(val))
-            end
-        end
-    })
-else
-    warn("GUISettings.CreateDropdown is not defined or is not a function")
-end
-
 
 
 
