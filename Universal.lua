@@ -6366,6 +6366,6 @@ task.spawn(function()
 	end
 
 	if shared.deffont and shared.deffont ~= Enum.Font.Arial then 
-		infonotif("Vape: Font Loaded.", "Font changed to "..string.gsub(tostring(shared.deffont), "Enum.Font.", "")..".", 5)
+		infonotif("Vape: Font Loaded.", "Font set to "..string.gsub(tostring(shared.deffont), "Enum.Font.", "")..".", 5)
 	end
 end)
