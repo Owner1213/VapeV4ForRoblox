@@ -6189,12 +6189,9 @@ run(function()
         Name = "GUI Font",
         Function = function(callback) 
 			if callback then
-				guiFont.ToggleButton(true)
 				if shared.deffont ~= Enum.Font[font.Value] then 
 					shared.deffont = Enum.Font[font.Value]
 				end
-				GuiLibrary.SaveSettings()
-				GuiLibrary.SwitchProfile("default")
 			end
 		end
 	})
