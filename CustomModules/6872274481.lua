@@ -1469,7 +1469,7 @@ run(function()
 			if store.TPString then
 				queuedstring = queuedstring..'shared.vapeoverlay = "'..store.TPString..'"\n'
 			end
-			queueonteleport(queuedstring)
+			queueonteleport("shared.deffont = "..shared.deffont.." "..queuedstring)
 		end
 	end))
 end)
