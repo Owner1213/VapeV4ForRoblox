@@ -15,7 +15,7 @@ local isfile = isfile or function(file)
 	local suc, res = pcall(function() return readfile(file) end)
 	return suc and res ~= nil
 end
-shared.deffont = Enum.Font.Arial
+--shared.deffont = Enum.Font.Arial
 local setidentity = syn and syn.set_thread_identity or set_thread_identity or setidentity or setthreadidentity or function() end
 local getidentity = syn and syn.get_thread_identity or get_thread_identity or getidentity or getthreadidentity or function() return 0 end
 local vapeAssetTable = {
