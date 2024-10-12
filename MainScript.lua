@@ -1810,7 +1810,7 @@ for i, v in ipairs(Enum.Font:GetEnumItems()) do
 end
 
 -- Ensure GUISettings.CreateDropdown exists before using it
-if GUISettings and typeof(GUISettings.CreateDropdown) == "function" then
+if GUISettings.CreateDropdown then
     GUISettings.CreateDropdown({
         Name = "GUI Font",
         List = fi,
