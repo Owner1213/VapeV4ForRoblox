@@ -6876,11 +6876,11 @@ if shared.VapeExecuted then
 		textlabel2.Parent = frame
 		task.spawn(function()
 			pcall(function()
-				bettertween2(frame, UDim2.new(1, -(size - 4), 1, -(150 + 80 * offset)), Enum.EasingDirection.In, Enum.EasingStyle.Quad, 0.25, true)
+				bettertween2(frame, UDim2.new(1, -(size - 4), 1, -(150 + 80 * offset)), shared.notied or Enum.EasingDirection.In, shared.noties or Enum.EasingStyle.Sine, shared.notid or 0.15, true)
 				task.wait(0.25)
 				frame2:TweenSize(UDim2.new(0, 0, 0, 2), Enum.EasingDirection.In, Enum.EasingStyle.Linear, duration, true)
 				task.wait(duration)
-				bettertween2(frame, UDim2.new(1, 0, 1, frame.Position.Y.Offset), Enum.EasingDirection.In, Enum.EasingStyle.Quad, 0.25, true)
+				bettertween2(frame, UDim2.new(1, 0, 1, frame.Position.Y.Offset), shared.notied or Enum.EasingDirection.In, shared.noties or Enum.EasingStyle.Sine, shared.notid or 0.15, true)
 				task.wait(0.25)
 				frame:Remove()
 			end)

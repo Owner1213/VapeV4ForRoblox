@@ -6217,6 +6217,55 @@ run(function()
 	})
 end)
 
+run(function() 
+	local CustomNotif = {Enabled = false}
+	local EasingDirection = {Value = "In"}
+	local EasingStyle = {Value = "Sine"}
+	local Duration = {Value = 3}
+
+	shared.notied = nil
+	shared.noties = nil
+	shared.notid = nil
+
+	local EasingDirectionEnums = {}
+	local EasingStyleEnums = {}
+
+	for i, enumItem in ipairs(Enum.EasingDirection:GetEnumItems()) do
+		EasingDirectionEnums[i] = enumItem.Name
+	end
+
+	for i, enumItem in ipairs(Enum.EasingStyle:GetEnumItems()) do
+        EasingStyleEnums[i] = enumItem.Name
+    end
+
+	CustomNotif = GuiLibrary.ObjectsThatCanBeSaved.UserInterfaceWindow.Api.CreateOptionsButton({
+        Name = "CustomNotification",
+        Function = function(callback) 
+			if callback then 
+				shared.notied = Enum.EasingDirection[EasingDirection.Value]
+				shared.noties = Enum.EasingStyle[EasingStyle.Value]
+                shared.notid = Duration.Value
+			end
+		end
+	})
+	EasingDirection = CustomNotif.CreateDropdown({
+        Name = "EasingDirection",
+        List = EasingDirectionEnums,
+        Function = function(val) end
+    })
+	EasingStyle = CustomNotif.CreateDropdown({
+        Name = "EasingStyle",
+		List = EasingStyleEnums,
+		Function = function(val) end
+	})
+	Duration = CustomNotif.CreateSlider({
+        Name = "Duration",
+        Min = 0.01,
+        Max = 1,
+		Default = 0.15
+	})
+end)
+
 run(function()
 	local FPS = {}
 	local FPSLabel
