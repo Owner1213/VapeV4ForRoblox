@@ -1804,7 +1804,7 @@ GUISettings.CreateSlider({
 
 local fi = {}
 
-for i,v in ipairs(Enum.Font:GetEnumItems()) do
+for i, v in ipairs(Enum.Font:GetEnumItems()) do
 	table.insert(fi, v.Name)
 end
 
@@ -1812,7 +1812,12 @@ GUISettings.CreateDropdown({
 	Name = "GUI Font",
 	List = fi,
 	Function = function(val)
-        shared.deffont = Enum.Font[val] or nil
+        for _, fontEnum in ipairs(Enum.Font:GetEnumItems()) do
+            if fontEnum.Name == val then
+                shared.deffont = fontEnum
+                break
+            end
+        end
     end
 })
 
