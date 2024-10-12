@@ -6193,9 +6193,9 @@ run(function()
 					shared.deffont = Enum.Font[font.Value]
 				end
 				GuiLibrary.SaveSettings()
+				guiFont.ToggleButton(true)
 				if shared and shared.GuiLibrary then shared.GuiLibrary.SelfDestruct() end
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/VapeV4ForRoblox/main/NewMainScript.lua", true))()
-                guiFont.ToggleButton(true)
 			end
 		end
 	})
