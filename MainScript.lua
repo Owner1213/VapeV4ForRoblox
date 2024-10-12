@@ -1289,7 +1289,8 @@ TextGUI.CreateToggle({
 		VapeLogo.Visible = callback
 		GuiLibrary.UpdateHudEvent:Fire()
 	end,
-	HoverText = "Renders a vape watermark"
+	HoverText = "Renders a vape watermark",
+	Default = true
 })
 TextGUIBackgroundToggle = TextGUI.CreateToggle({
 	Name = "Render background",
