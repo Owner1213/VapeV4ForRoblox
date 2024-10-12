@@ -1808,7 +1808,7 @@ for i,v in pairs(Enum.Font:GetEnumItems()) do
 	table.insert(fi, v.Name)
 end
 
-local guifont = GUISettings.CreateDropdown({
+GUISettings.CreateDropdown({
 	Name = "GUI Font",
 	List = fi,
 	Function = function(val)
