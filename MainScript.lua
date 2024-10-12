@@ -955,6 +955,7 @@ local TextGUIOffsets = {
 }
 TextGUIOffsets[Enum.Platform.IOS] = TextGUIOffsets[Enum.Platform.Android]
 local function TextGUIUpdate()
+	print("start")
 	local suc, res = pcall(function()
 		local scaledgui = vapeInjected and GuiLibrary.MainGui.ScaledGui
 		if scaledgui and scaledgui.Visible then
@@ -1092,6 +1093,7 @@ local function TextGUIUpdate()
 			GuiLibrary.UpdateUI(GUIColorSlider.Hue, GUIColorSlider.Sat, GUIColorSlider.Value)
 		end
 	end)
+	print("end")
 	if res and res ~= nil then 
 		warningNotification("Vape: Error Protected.", res, 60)
 	end
