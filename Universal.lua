@@ -6435,28 +6435,21 @@ task.spawn(function()
 end)
 
 task.spawn(function() 
-	local Players = game:GetService("Players")
+	local Players = playersService
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")
 	local w = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
+	
 	local textChatService = game:GetService("TextChatService")
 
 	textChatService.OnIncomingMessage = function(message: TextChatMessage)
-		
 		local properties = Instance.new("TextChatMessageProperties")
 		
 		if message.TextSource then
-			
 			local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
 			
-			if player.Name == "HashtagBlu_YT" then
-				
-				properties.PrefixText = "<font color='#00ffee'>[Developer]</font> " .. "<font color='#ff8400'>[W Rizz]</font> " .. message.PrefixText
-				
-			end
-			
+			properties.PrefixText = "<font color='#00ffee'>[Developer]</font> " .. "<font color='#ff8400'>[Snow]</font> " .. message.PrefixText
 		end
-		
+
 		return properties
-		
 	end
 end)
