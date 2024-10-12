@@ -357,7 +357,7 @@ if shared.VapeExecuted then
 	hoverbox.Text = "  ".."Placeholder"
 	hoverbox.ZIndex = 11
 	hoverbox.TextColor3 = Color3.fromRGB(160, 160, 160)
-	hoverbox.Font = Enum.Font.Arial
+	hoverbox.Font = shared.deffont or Enum.Font.Arial
 	hoverbox.TextXAlignment = Enum.TextXAlignment.Left
 	hoverbox.TextSize = 14
 	hoverbox.Visible = false
@@ -898,7 +898,7 @@ if shared.VapeExecuted then
 		settingstext.ZIndex = 2
 		settingstext.Position = UDim2.new(0, 36, 0, 1)
 		settingstext.TextXAlignment = Enum.TextXAlignment.Left
-		settingstext.Font = Enum.Font.Arial
+		settingstext.Font = shared.deffont or Enum.Font.Arial
 		settingstext.TextSize = 14
 		settingstext.Text = "Settings"
 		settingstext.Visible = false
@@ -1253,7 +1253,7 @@ if shared.VapeExecuted then
 			buttontext.Active = false
 			buttontext.TextColor3 = Color3.fromRGB(160, 160, 160)
 			buttontext.TextSize = 14
-			buttontext.Font = Enum.Font.Arial
+			buttontext.Font = shared.deffont or Enum.Font.Arial
 			buttontext.TextXAlignment = Enum.TextXAlignment.Left
 			buttontext.Parent = overlayschildren
 			local buttonicon = Instance.new("ImageLabel")
@@ -1478,7 +1478,7 @@ if shared.VapeExecuted then
 					buttontext.Active = false
 					buttontext.TextColor3 = Color3.fromRGB(160, 160, 160)
 					buttontext.TextSize = 14
-					buttontext.Font = Enum.Font.Arial
+					buttontext.Font = shared.deffont or Enum.Font.Arial
 					buttontext.TextXAlignment = Enum.TextXAlignment.Left
 					buttontext.Position = UDim2.new(0, (icon and 36 or 10), 0, 0)
 					buttontext.Parent = children3
@@ -1578,7 +1578,7 @@ if shared.VapeExecuted then
 					frame.Name = argstable["Name"]
 					frame.Parent = children3
 					local text1 = Instance.new("TextLabel")
-					text1.Font = Enum.Font.Arial
+					text1.Font = shared.deffont or Enum.Font.Arial
 					text1.TextXAlignment = Enum.TextXAlignment.Left
 					text1.Text = "          "..(translations[argstable["Name"]] ~= nil and translations[argstable["Name"]] or argstable["Name"])
 					text1.Size = UDim2.new(1, 0, 0, 25)
@@ -1588,7 +1588,7 @@ if shared.VapeExecuted then
 					text1.TextSize = 12
 					text1.Parent = frame
 					local text2 = Instance.new("TextButton")
-					text2.Font = Enum.Font.Arial
+					text2.Font = shared.deffont or Enum.Font.Arial
 					text2.AutoButtonColor = false
 					text2.TextXAlignment = Enum.TextXAlignment.Right
 					text2.Text = tostring((argstable["Default"] or argstable["Min"])) .. " "..(argstable["Percent"] and "%" or " ").." "
@@ -1600,7 +1600,7 @@ if shared.VapeExecuted then
 					text2.Parent = frame
 					local text3 = Instance.new("TextBox")
 					text3.Visible = false
-					text3.Font = Enum.Font.Arial
+					text3.Font = shared.deffont or Enum.Font.Arial
 					text3.TextXAlignment = Enum.TextXAlignment.Right
 					text3.BackgroundTransparency = 1
 					text3.TextColor3 = Color3.fromRGB(160, 160, 160)
@@ -1937,7 +1937,7 @@ if shared.VapeExecuted then
 				frame.Visible = false
 				frame.Parent = children2
 				local text1 = Instance.new("TextLabel")
-				text1.Font = Enum.Font.Arial
+				text1.Font = shared.deffont or Enum.Font.Arial
 				text1.TextXAlignment = Enum.TextXAlignment.Left
 				text1.Text = "          "..text
 				text1.Size = UDim2.new(1, 0, 0, 27)
@@ -2011,7 +2011,7 @@ if shared.VapeExecuted then
 			frame.Name = name
 			frame.Parent = children2
 			local text1 = Instance.new("TextLabel")
-			text1.Font = Enum.Font.Arial
+			text1.Font = shared.deffont or Enum.Font.Arial
 			text1.TextXAlignment = Enum.TextXAlignment.Left
 			text1.Text = "          "..name
 			text1.Size = UDim2.new(1, 0, 0, 25)
@@ -2244,7 +2244,7 @@ if shared.VapeExecuted then
 			buttontext.Active = false
 			buttontext.TextColor3 = Color3.fromRGB(160, 160, 160)
 			buttontext.TextSize = 14
-			buttontext.Font = Enum.Font.Arial
+			buttontext.Font = shared.deffont or Enum.Font.Arial
 			buttontext.TextXAlignment = Enum.TextXAlignment.Left
 			buttontext.Position = UDim2.new(0, (icon and 36 or 10), 0, 0)
 			buttontext.Parent = children2
@@ -2352,7 +2352,7 @@ if shared.VapeExecuted then
 			buttontext.Active = false
 			buttontext.TextColor3 = Color3.fromRGB(160, 160, 160)
 			buttontext.TextSize = 14
-			buttontext.Font = Enum.Font.Arial
+			buttontext.Font = shared.deffont or Enum.Font.Arial
 			buttontext.TextXAlignment = Enum.TextXAlignment.Left
 			buttontext.Position = UDim2.new(0, (argstable["Icon"] and 33 or 10), 0, 1)
 			buttontext.Parent = button
@@ -2472,7 +2472,7 @@ if shared.VapeExecuted then
 		windowtext.Name = "WindowTitle"
 		windowtext.Position = UDim2.new(0, 36, 0, 1)
 		windowtext.TextXAlignment = Enum.TextXAlignment.Left
-		windowtext.Font = Enum.Font.Arial
+		windowtext.Font = shared.deffont or Enum.Font.Arial
 		windowtext.TextSize = 14
 		windowtext.Text = (translations[argstablemain["Name"]] ~= nil and translations[argstablemain["Name"]] or argstablemain["Name"])
 		windowtext.TextColor3 = Color3.fromRGB(201, 201, 201)
@@ -2583,7 +2583,7 @@ if shared.VapeExecuted then
 			frame.Name = argstable["Name"]
 			frame.Parent = children2
 			local text1 = Instance.new("TextLabel")
-			text1.Font = Enum.Font.Arial
+			text1.Font = shared.deffont or Enum.Font.Arial
 			text1.TextXAlignment = Enum.TextXAlignment.Left
 			text1.Text = "          "..(translations[argstable["Name"]] ~= nil and translations[argstable["Name"]] or argstable["Name"])
 			text1.Size = UDim2.new(1, 0, 0, 25)
@@ -2593,7 +2593,7 @@ if shared.VapeExecuted then
 			text1.TextSize = 12
 			text1.Parent = frame
 			local text2 = Instance.new("TextButton")
-			text2.Font = Enum.Font.Arial
+			text2.Font = shared.deffont or Enum.Font.Arial
 			text2.AutoButtonColor = false
 			text2.TextXAlignment = Enum.TextXAlignment.Right
 			text2.Text = tostring((argstable["Default"] or argstable["Min"])) .. " "..(argstable["Percent"] and "%" or " ").." "
@@ -2605,7 +2605,7 @@ if shared.VapeExecuted then
 			text2.Parent = frame
 			local text3 = Instance.new("TextBox")
 			text3.Visible = false
-			text3.Font = Enum.Font.Arial
+			text3.Font = shared.deffont or Enum.Font.Arial
 			text3.TextXAlignment = Enum.TextXAlignment.Right
 			text3.BackgroundTransparency = 1
 			text3.TextColor3 = Color3.fromRGB(160, 160, 160)
@@ -3226,7 +3226,7 @@ if shared.VapeExecuted then
 			drop1.TextColor3 = Color3.fromRGB(160, 160, 160)
 			drop1.Text = "         "..(translations[argstable["Name"]] ~= nil and translations[argstable["Name"]] or argstable["Name"]).." - "..(list ~= {} and list[1] or "")
 			drop1.TextTruncate = Enum.TextTruncate.AtEnd
-			drop1.Font = Enum.Font.Arial
+			drop1.Font = shared.deffont or Enum.Font.Arial
 			local expandbutton2 = Instance.new("ImageLabel")
 			expandbutton2.Active = false
 			expandbutton2.Size = UDim2.new(0, 9, 0, 4)
@@ -3389,7 +3389,7 @@ if shared.VapeExecuted then
 			frame.Name = argstable["Name"]
 			frame.Parent = children2
 			local text1 = Instance.new("TextLabel")
-			text1.Font = Enum.Font.Arial
+			text1.Font = shared.deffont or Enum.Font.Arial
 			text1.TextXAlignment = Enum.TextXAlignment.Left
 			text1.Text = "          "..(translations[argstable["Name"]] ~= nil and translations[argstable["Name"]] or argstable["Name"])
 			text1.Size = UDim2.new(1, 0, 0, 25)
@@ -3534,7 +3534,7 @@ if shared.VapeExecuted then
 			buttontext.Active = false
 			buttontext.TextColor3 = Color3.fromRGB(160, 160, 160)
 			buttontext.TextSize = 14
-			buttontext.Font = Enum.Font.Arial
+			buttontext.Font = shared.deffont or Enum.Font.Arial
 			buttontext.TextXAlignment = Enum.TextXAlignment.Left
 			buttontext.Position = UDim2.new(0, (icon and 36 or 10), 0, 0)
 			buttontext.Parent = children2
@@ -3696,7 +3696,7 @@ if shared.VapeExecuted then
 		windowtext.Name = "WindowTitle"
 		windowtext.Position = UDim2.new(0, 36, 0, 1)
 		windowtext.TextXAlignment = Enum.TextXAlignment.Left
-		windowtext.Font = Enum.Font.Arial
+		windowtext.Font = shared.deffont or Enum.Font.Arial
 		windowtext.TextSize = 14
 		windowtext.Text = (translations[argstablemain2["Name"]] ~= nil and translations[argstablemain2["Name"]] or argstablemain2["Name"])
 		windowtext.TextColor3 = Color3.fromRGB(200, 200, 200)
@@ -3803,7 +3803,7 @@ if shared.VapeExecuted then
 			buttontext.Active = false
 			buttontext.TextColor3 = Color3.fromRGB(160, 160, 160)
 			buttontext.TextSize = 14
-			buttontext.Font = Enum.Font.Arial
+			buttontext.Font = shared.deffont or Enum.Font.Arial
 			buttontext.TextXAlignment = Enum.TextXAlignment.Left
 			buttontext.Position = UDim2.new(0, 12, 0, 1)
 			buttontext.Parent = button
@@ -3855,7 +3855,7 @@ if shared.VapeExecuted then
 			bindtext.Text = ""
 			bindtext.TextSize = 14
 			bindtext.Parent = bindbkg
-			bindtext.Font = Enum.Font.Arial
+			bindtext.Font = shared.deffont or Enum.Font.Arial
 			bindtext.Size = UDim2.new(1, 0, 1, 0)
 			bindtext.TextColor3 = Color3.fromRGB(85, 85, 85)
 			bindtext.Visible = false
@@ -3870,7 +3870,7 @@ if shared.VapeExecuted then
 			local bindtext3 = Instance.new("TextLabel")
 			bindtext3.Text = "   PRESS  KEY TO BIND"
 			bindtext3.Size = UDim2.new(1, 0, 1, 0)
-			bindtext3.Font = Enum.Font.Arial
+			bindtext3.Font = shared.deffont or Enum.Font.Arial
 			bindtext3.TextXAlignment = Enum.TextXAlignment.Left
 			bindtext3.TextSize = 14
 			bindtext3.TextColor3 = Color3.fromRGB(44, 44, 44)
@@ -4280,7 +4280,7 @@ if shared.VapeExecuted then
 				windowtext.Position = UDim2.new(0, 36, 0, 1)
 				windowtext.ZIndex = 3
 				windowtext.TextXAlignment = Enum.TextXAlignment.Left
-				windowtext.Font = Enum.Font.Arial
+				windowtext.Font = shared.deffont or Enum.Font.Arial
 				windowtext.TextSize = 14
 				windowtext.Text = "Target settings"
 				windowtext.TextColor3 = Color3.fromRGB(200, 200, 200)
@@ -4334,7 +4334,7 @@ if shared.VapeExecuted then
 					buttontext.TextColor3 = Color3.fromRGB(160, 160, 160)
 					buttontext.TextSize = 14
 					buttontext.ZIndex = 3
-					buttontext.Font = Enum.Font.Arial
+					buttontext.Font = shared.deffont or Enum.Font.Arial
 					buttontext.TextXAlignment = Enum.TextXAlignment.Left
 					buttontext.Position = UDim2.new(0, (icon and 36 or 10), 0, 0)
 					buttontext.Parent = children
@@ -4667,7 +4667,7 @@ if shared.VapeExecuted then
 				windowtext.Position = UDim2.new(0, 36, 0, 1)
 				windowtext.ZIndex = 3
 				windowtext.TextXAlignment = Enum.TextXAlignment.Left
-				windowtext.Font = Enum.Font.Arial
+				windowtext.Font = shared.deffont or Enum.Font.Arial
 				windowtext.TextSize = 14
 				windowtext.Text = (translations[argstablemain3["Name"]] ~= nil and translations[argstablemain3["Name"]] or argstablemain3["Name"])
 				windowtext.TextColor3 = Color3.fromRGB(200, 200, 200)
@@ -5017,7 +5017,7 @@ if shared.VapeExecuted then
 				drop1.TextColor3 = Color3.fromRGB(160, 160, 160)
 				drop1.Text = "           "..(translations[argstable["Name"]] ~= nil and translations[argstable["Name"]] or argstable["Name"]).." - "..(list ~= {} and list[1] or "")
 				drop1.TextTruncate = Enum.TextTruncate.AtEnd
-				drop1.Font = Enum.Font.Arial
+				drop1.Font = shared.deffont or Enum.Font.Arial
 				local expandbutton2 = Instance.new("ImageLabel")
 				expandbutton2.Active = false
 				expandbutton2.Size = UDim2.new(0, 9, 0, 4)
@@ -5139,7 +5139,7 @@ if shared.VapeExecuted then
 						drop2.Size = UDim2.new(0, 198, 0, 21)
 						drop2.Position = UDim2.new(0, 2, 0, placeholder - 4)
 						drop2.BackgroundColor3 = Color3.fromRGB(26, 25, 26)
-						drop2.Font = Enum.Font.Arial
+						drop2.Font = shared.deffont or Enum.Font.Arial
 						drop2.TextSize = 14
 						drop2.ZIndex = 8
 						drop2.BorderSizePixel = 0
@@ -5188,7 +5188,7 @@ if shared.VapeExecuted then
 				frame.Name = argstable["Name"]
 				frame.Parent = children2
 				local text1 = Instance.new("TextLabel")
-				text1.Font = Enum.Font.Arial
+				text1.Font = shared.deffont or Enum.Font.Arial
 				text1.TextXAlignment = Enum.TextXAlignment.Left
 				text1.Text = "          "..(translations[argstable["Name"]] ~= nil and translations[argstable["Name"]] or argstable["Name"])
 				text1.Size = UDim2.new(1, 0, 0, 27)
@@ -5377,7 +5377,7 @@ if shared.VapeExecuted then
 				frame.Name = argstable["Name"]
 				frame.Parent = children2
 				local text1 = Instance.new("TextLabel")
-				text1.Font = Enum.Font.Arial
+				text1.Font = shared.deffont or Enum.Font.Arial
 				text1.TextXAlignment = Enum.TextXAlignment.Left
 				text1.Text = "          "..(translations[argstable["Name"]] ~= nil and translations[argstable["Name"]] or argstable["Name"])
 				text1.Size = UDim2.new(1, 0, 0, 25)
@@ -5387,7 +5387,7 @@ if shared.VapeExecuted then
 				text1.TextSize = 12
 				text1.Parent = frame
 				local text2 = Instance.new("TextButton")
-				text2.Font = Enum.Font.Arial
+				text2.Font = shared.deffont or Enum.Font.Arial
 				text2.AutoButtonColor = false
 				text2.TextXAlignment = Enum.TextXAlignment.Right
 				text2.Text = tostring((argstable["Default"] or argstable["Min"])) .. " "..(argstable["Percent"] and "%" or " ").." "
@@ -5399,7 +5399,7 @@ if shared.VapeExecuted then
 				text2.Parent = frame
 				local text3 = Instance.new("TextBox")
 				text3.Visible = false
-				text3.Font = Enum.Font.Arial
+				text3.Font = shared.deffont or Enum.Font.Arial
 				text3.TextXAlignment = Enum.TextXAlignment.Right
 				text3.BackgroundTransparency = 1
 				text3.TextColor3 = Color3.fromRGB(160, 160, 160)
@@ -5689,7 +5689,7 @@ if shared.VapeExecuted then
 				buttontext.Active = false
 				buttontext.TextColor3 = Color3.fromRGB(160, 160, 160)
 				buttontext.TextSize = 14
-				buttontext.Font = Enum.Font.Arial
+				buttontext.Font = shared.deffont or Enum.Font.Arial
 				buttontext.TextXAlignment = Enum.TextXAlignment.Left
 				buttontext.Position = UDim2.new(0, (icon and 36 or 10), 0, 0)
 				buttontext.Parent = children2
@@ -5956,7 +5956,7 @@ if shared.VapeExecuted then
 		windowtext.Name = "WindowTitle"
 		windowtext.Position = UDim2.new(0, 36, 0, 1)
 		windowtext.TextXAlignment = Enum.TextXAlignment.Left
-		windowtext.Font = Enum.Font.Arial
+		windowtext.Font = shared.deffont or Enum.Font.Arial
 		windowtext.TextSize = 14
 		windowtext.Text = (translations[argstablemain["Name"]] ~= nil and translations[argstablemain["Name"]] or argstablemain["Name"])
 		windowtext.TextColor3 = Color3.fromRGB(200, 200, 200)
@@ -6069,7 +6069,7 @@ if shared.VapeExecuted then
 			frame.Name = argstable["Name"]
 			frame.Parent = children2
 			local text1 = Instance.new("TextLabel")
-			text1.Font = Enum.Font.Arial
+			text1.Font = shared.deffont or Enum.Font.Arial
 			text1.TextXAlignment = Enum.TextXAlignment.Left
 			text1.Text = "          "..(translations[argstable["Name"]] ~= nil and translations[argstable["Name"]] or argstable["Name"])
 			text1.Size = UDim2.new(1, 0, 0, 27)
@@ -6259,7 +6259,7 @@ if shared.VapeExecuted then
 			buttontext.Active = false
 			buttontext.TextColor3 = Color3.fromRGB(160, 160, 160)
 			buttontext.TextSize = 14
-			buttontext.Font = Enum.Font.Arial
+			buttontext.Font = shared.deffont or Enum.Font.Arial
 			buttontext.TextXAlignment = Enum.TextXAlignment.Left
 			buttontext.Position = UDim2.new(0, (icon and 36 or 10), 0, 0)
 			buttontext.Parent = children2
@@ -6854,7 +6854,7 @@ if shared.VapeExecuted then
 		icon2.ImageTransparency = 0.5
 		icon2.Parent = icon
 		local textlabel1 = Instance.new("TextLabel")
-		textlabel1.Font = Enum.Font.Arial
+		textlabel1.Font = shared.deffont or Enum.Font.Arial
 		textlabel1.TextSize = 14
 		textlabel1.RichText = true
 		textlabel1.TextTransparency = 0.1
@@ -6867,7 +6867,7 @@ if shared.VapeExecuted then
 		textlabel1.Parent = frame
 		local textlabel2 = textlabel1:Clone()
 		textlabel2.Position = UDim2.new(0, 46, 0, 44)
-		textlabel2.Font = Enum.Font.Arial
+		textlabel2.Font = shared.deffont or Enum.Font.Arial
 		textlabel2.TextTransparency = 0
 		textlabel2.TextColor3 = Color3.fromRGB(170, 170, 170)
 		textlabel2.RichText = true
