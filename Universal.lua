@@ -6192,6 +6192,9 @@ run(function()
 				if shared.deffont ~= Enum.Font[font.Value] then 
 					shared.deffont = Enum.Font[font.Value]
 				end
+				guiFont.ToggleButton(true)
+				task.wait(1)
+				GuiLibrary.SwitchProfile(profileName)
 			end
 		end
 	})
