@@ -6180,6 +6180,15 @@ run(function()
 	})
 end)
 
+local function infonotif(title, text, delay)
+	local suc, res = pcall(function()
+		local frame = GuiLibrary.CreateNotification(title, text, delay, "assets/InfoNotification.png")
+		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255,255,255)
+		return frame
+	end)
+	return (suc and res)
+end
+
 run(function() 
 	local guiFont = {Enabled = false}
 	local font = {Value = "Arial"}
@@ -6192,6 +6201,7 @@ run(function()
 				if shared.deffont ~= Enum.Font[font.Value] then 
 					shared.deffont = Enum.Font[font.Value]
 				end
+				infonotif("GUI Font", "Font Successfully changed to "..font.Value..". Please reinject to apply changes.", 6.5)
 				guiFont.ToggleButton(true)
 			end
 		end
@@ -6356,15 +6366,6 @@ run(function()
 end)
 
 task.spawn(function() 
-	local function infonotif(title, text, delay)
-		local suc, res = pcall(function()
-			local frame = GuiLibrary.CreateNotification(title, text, delay, "assets/InfoNotification.png")
-			frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255,255,255)
-			return frame
-		end)
-		return (suc and res)
-	end
-
 	if shared.deffont and shared.deffont ~= Enum.Font.Arial then 
 		infonotif("Vape: Font Loaded.", "Font set to "..string.gsub(tostring(shared.deffont), "Enum.Font.", "")..".", 5)
 	end
