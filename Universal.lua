@@ -6192,7 +6192,7 @@ run(function()
 				if shared.deffont ~= Enum.Font[font.Value] then 
 					shared.deffont = Enum.Font[font.Value]
 				end
-				GuiLibrary.SwitchProfile(profileName) guiFont.ToggleButton(true)
+				guiFont.ToggleButton(true)
 			end
 		end
 	})
