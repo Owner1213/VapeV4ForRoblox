@@ -6183,6 +6183,7 @@ end)
 run(function() 
 	local guiFont = {Enabled = false}
 	local font = {Value = "Arial"}
+	local fonttable = {}
 
 	guiFont = GuiLibrary.ObjectsThatCanBeSaved.UserInterfaceWindow.Api.CreateOptionsButton({
         Name = "GUI Font",
@@ -6197,16 +6198,15 @@ run(function()
 			end
 		end
 	})
+	for i, enumItem in ipairs(Enum.Font:GetEnumItems()) do
+		fonttable[i] = enumItem.Name
+	end
 
 	font = guiFont.CreateDropdown({
 		Name = "Font",
-		List = table.create(#Enum.Font:GetEnumItems()),
+		List = fonttable,
 		Function = function(val) end
 	})
-	
-	for i, enumItem in ipairs(Enum.Font:GetEnumItems()) do
-		font.List[i] = enumItem.Name
-	end
 end)
 
 run(function()
