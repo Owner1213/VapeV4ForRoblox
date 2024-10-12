@@ -2217,7 +2217,7 @@ run(function()
 						HighJumpTick = tick() + (HighJumpDelay.Value / 10)
 						if HighJumpMode.Value == "Normal" then
 							entityLibrary.character.HumanoidRootPart.Velocity = entityLibrary.character.HumanoidRootPart.Velocity + Vector3.new(0, HighJumpBoost.Value, 0)
-						else
+						elseif HighJumpMode.Value == "CFrame"
 							task.spawn(function()
 								local start = HighJumpBoost.Value
 								repeat
@@ -2226,6 +2226,8 @@ run(function()
 									task.wait()
 								until start <= 0
 							end)
+						else
+							lplr.Character:SetPrimaryPartCFrame(lplr.Character.PrimaryPart.CFrame + Vector3.new(0, 15, 0))
 						end
 					end
 					HighJump.ToggleButton(false)
@@ -2262,7 +2264,7 @@ run(function()
 	})
 	HighJumpMode = HighJump.CreateDropdown({
 		Name = "Mode",
-		List = {"Normal", "CFrame"},
+		List = {"Normal", "CFrame", "Teleport"},
 		Function = function(val) end
 	})
 	HighJumpBoost = HighJump.CreateSlider({
