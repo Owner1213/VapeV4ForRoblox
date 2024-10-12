@@ -2200,6 +2200,7 @@ run(function()
 	local HighJumpMethod = {Value = "Toggle"}
 	local HighJumpMode = {Value = "Normal"}
 	local HighJumpBoost = {Value = 1}
+	local HighJumpDistance = {Value = 15}
 	local HighJumpDelay = {Value = 20}
 	local HighJumpTick = tick()
 	local highjumpBound = true
@@ -2267,7 +2268,14 @@ run(function()
 	HighJumpMode = HighJump.CreateDropdown({
 		Name = "Mode",
 		List = {"Normal", "CFrame", "Teleport"},
-		Function = function(val) end
+		Function = function(val) if val == "Teleport" then HighJumpDistance.Object.Visible = true else HighJumpDistance.Object.Visible = false end end
+	})
+	HighJumpDistance = HighJump.CreateSlider({
+        Name = "TeleportDistance",
+        Min = 1,
+        Max = 50,
+		Function = function(val) end,
+        Default = 15
 	})
 	HighJumpBoost = HighJump.CreateSlider({
 		Name = "Boost",
@@ -2282,6 +2290,7 @@ run(function()
 		Max = 50,
 		Function = function(val) end,
 	})
+	HighJumpDistance.Object.Visible = false
 end)
 
 local spiderHoldingShift = false
