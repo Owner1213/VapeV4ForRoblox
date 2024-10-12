@@ -6962,7 +6962,7 @@ if shared.VapeExecuted then
 					if input1.KeyCode == Enum.KeyCode[aGuiLibrary["Api"]["Keybind"]] and aGuiLibrary["Api"]["Keybind"] ~= GuiLibrary["GUIKeybind"] then
 						aGuiLibrary["Api"]["ToggleButton"](false)
 						if GuiLibrary["ToggleNotifications"] then
-							GuiLibrary["CreateNotification"]("Module Toggled", aGuiLibrary["Api"]["Name"]..' <font color="#FFFFFF">has been</font> <font color="'..(aGuiLibrary["Api"]["Enabled"] and '#32CD32' or '#FF6464')..'">'..(aGuiLibrary["Api"]["Enabled"] and "Enabled" or "Disabled")..'</font><font color="#FFFFFF">!</font>', 1)
+							GuiLibrary["CreateNotification"]("Module Toggled", aGuiLibrary["Api"]["Name"]..' <font color="#FFFFFF">has been</font> <font color="'..(aGuiLibrary["Api"]["Enabled"] and '#32CD32' or '#FF6464')..'">'..(aGuiLibrary["Api"]["Enabled"] and "Enabled" or "Disabled")..'</font><font color="#FFFFFF">!</font>', 999)
 						end
 					end
 				end
