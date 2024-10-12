@@ -1092,6 +1092,9 @@ local function TextGUIUpdate()
 			GuiLibrary.UpdateUI(GUIColorSlider.Hue, GUIColorSlider.Sat, GUIColorSlider.Value)
 		end
 	end)
+	if res and res ~= nil then 
+		warningNotification("Vape: Error Protected.", res, 60)
+	end
 end
 
 TextGUI.GetCustomChildren().Parent:GetPropertyChangedSignal("Position"):Connect(TextGUIUpdate)
