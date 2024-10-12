@@ -6327,3 +6327,18 @@ run(function()
 	createKeystroke(Enum.KeyCode.D, UDim2.new(0, 76, 0, 42), UDim2.new(0, 8, 0, 5))
 	createKeystroke(Enum.KeyCode.Space, UDim2.new(0, 0, 0, 83), UDim2.new(0, 25, 0, -10))
 end)
+
+task.spawn(function() 
+	local function infonotif(title, text, delay)
+		local suc, res = pcall(function()
+			local frame = GuiLibrary.CreateNotification(title, text, delay, "assets/InfoNotification.png")
+			frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255,255,255)
+			return frame
+		end)
+		return (suc and res)
+	end
+
+	if shared.deffont and shared.deffont ~= Enum.Font.Arial then 
+		infonotif("Vape: Font Loaded.", "Font changed to "..string.gsub(tostring(shared.deffont), "Enum.Font", "")..".", 5)
+	end
+end)
