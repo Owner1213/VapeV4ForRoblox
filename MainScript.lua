@@ -955,141 +955,143 @@ local TextGUIOffsets = {
 }
 TextGUIOffsets[Enum.Platform.IOS] = TextGUIOffsets[Enum.Platform.Android]
 local function TextGUIUpdate()
-	local scaledgui = vapeInjected and GuiLibrary.MainGui.ScaledGui
-	if scaledgui and scaledgui.Visible then
-		local formattedText = ""
-		local moduleList = {}
+	local suc, res = pcall(function()
+		local scaledgui = vapeInjected and GuiLibrary.MainGui.ScaledGui
+		if scaledgui and scaledgui.Visible then
+			local formattedText = ""
+			local moduleList = {}
 
-		for i, v in pairs(GuiLibrary.ObjectsThatCanBeSaved) do
-			if v.Type == "OptionsButton" and v.Api.Enabled then
-                local blacklistedCheck = table.find(TextGUICircleObject.CircleList.ObjectList, v.Api.Name)
-                blacklistedCheck = blacklistedCheck and TextGUICircleObject.CircleList.ObjectList[blacklistedCheck]
-                if not blacklistedCheck then
-					local extraText = v.Api.GetExtraText()
-                    table.insert(moduleList, {Text = v.Api.Name, ExtraText = extraText ~= "" and " "..extraText or ""})
-                end
+			for i, v in pairs(GuiLibrary.ObjectsThatCanBeSaved) do
+				if v.Type == "OptionsButton" and v.Api.Enabled then
+					local blacklistedCheck = table.find(TextGUICircleObject.CircleList.ObjectList, v.Api.Name)
+					blacklistedCheck = blacklistedCheck and TextGUICircleObject.CircleList.ObjectList[blacklistedCheck]
+					if not blacklistedCheck then
+						local extraText = v.Api.GetExtraText()
+						table.insert(moduleList, {Text = v.Api.Name, ExtraText = extraText ~= "" and " "..extraText or ""})
+					end
+				end
 			end
-		end
 
-		if TextGUISortMode.Value == "Alphabetical" then
-			table.sort(moduleList, function(a, b) return a.Text:lower() < b.Text:lower() end)
-		else
-			table.sort(moduleList, function(a, b)
-				return textService:GetTextSize(a.Text..a.ExtraText, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000)).X > textService:GetTextSize(b.Text..b.ExtraText, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000)).X
-			end)
-		end
-
-		local backgroundList = {}
-		local first = true
-		for i, v in pairs(moduleList) do
-            local newEntryText = v.Text..v.ExtraText
-			if first then
-				formattedText = "\n"..newEntryText
-				first = false
+			if TextGUISortMode.Value == "Alphabetical" then
+				table.sort(moduleList, function(a, b) return a.Text:lower() < b.Text:lower() end)
 			else
-				formattedText = formattedText..'\n'..newEntryText
+				table.sort(moduleList, function(a, b)
+					return textService:GetTextSize(a.Text..a.ExtraText, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000)).X > textService:GetTextSize(b.Text..b.ExtraText, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000)).X
+				end)
 			end
-			table.insert(backgroundList, newEntryText)
-		end
 
-		TextGUIFormatted = moduleList
-		VapeTextExtra.Text = formattedText
-        VapeText.Size = UDim2.fromOffset(154, (formattedText ~= "" and textService:GetTextSize(formattedText, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000)) or Vector2.zero).Y)
-
-		local offsets = {
-			5,
-			1,
-			23,
-			23
-		}
-        if TextGUI.GetCustomChildren().Parent then
-            if (TextGUI.GetCustomChildren().Parent.Position.X.Offset + TextGUI.GetCustomChildren().Parent.Size.X.Offset / 2) >= (gameCamera.ViewportSize.X / 2) then
-                VapeText.TextXAlignment = Enum.TextXAlignment.Right
-                VapeTextExtra.TextXAlignment = Enum.TextXAlignment.Right
-                VapeTextExtra.Position = UDim2.fromOffset(offsets[1], offsets[2])
-                VapeLogo.Position = UDim2.new(1, -142, 0, 8)
-                VapeText.Position = UDim2.new(1, -158, 0, (VapeLogo.Visible and (TextGUIBackgroundToggle.Enabled and 41 or 35) or 5) + 5 + (VapeCustomText.Visible and 25 or 0) - offsets[3])
-                VapeCustomText.Position = UDim2.fromOffset(0, VapeLogo.Visible and 35 or 0)
-                VapeCustomText.TextXAlignment = Enum.TextXAlignment.Right
-                VapeBackgroundList.HorizontalAlignment = Enum.HorizontalAlignment.Right
-                VapeBackground.Position = VapeText.Position + UDim2.fromOffset(-60, -2 + offsets[4])
-            else
-                VapeText.TextXAlignment = Enum.TextXAlignment.Left
-                VapeTextExtra.TextXAlignment = Enum.TextXAlignment.Left
-                VapeTextExtra.Position = UDim2.fromOffset(offsets[1], offsets[2])
-                VapeLogo.Position = UDim2.fromOffset(2, 8)
-                VapeText.Position = UDim2.fromOffset(6, (VapeLogo.Visible and (TextGUIBackgroundToggle.Enabled and 41 or 35) or 5) + 5 + (VapeCustomText.Visible and 25 or 0) - offsets[3])
-				VapeCustomText.Position = UDim2.fromOffset(0, VapeLogo.Visible and 35 or 0)
-				VapeCustomText.TextXAlignment = Enum.TextXAlignment.Left
-                VapeBackgroundList.HorizontalAlignment = Enum.HorizontalAlignment.Left
-                VapeBackground.Position = VapeText.Position + UDim2.fromOffset(-4, -2 + offsets[4])
-            end
-        end
-
-		if TextGUIMode.Value == "Drawing" then
-			for i,v in pairs(TextGUIObjects.Labels) do
-				v.Visible = false
-				v:Remove()
-				TextGUIObjects.Labels[i] = nil
+			local backgroundList = {}
+			local first = true
+			for i, v in pairs(moduleList) do
+				local newEntryText = v.Text..v.ExtraText
+				if first then
+					formattedText = "\n"..newEntryText
+					first = false
+				else
+					formattedText = formattedText..'\n'..newEntryText
+				end
+				table.insert(backgroundList, newEntryText)
 			end
-			for i,v in pairs(TextGUIObjects.ShadowLabels) do
-				v.Visible = false
-				v:Remove()
-				TextGUIObjects.ShadowLabels[i] = nil
+
+			TextGUIFormatted = moduleList
+			VapeTextExtra.Text = formattedText
+			VapeText.Size = UDim2.fromOffset(154, (formattedText ~= "" and textService:GetTextSize(formattedText, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000)) or Vector2.zero).Y)
+
+			local offsets = {
+				5,
+				1,
+				23,
+				23
+			}
+			if TextGUI.GetCustomChildren().Parent then
+				if (TextGUI.GetCustomChildren().Parent.Position.X.Offset + TextGUI.GetCustomChildren().Parent.Size.X.Offset / 2) >= (gameCamera.ViewportSize.X / 2) then
+					VapeText.TextXAlignment = Enum.TextXAlignment.Right
+					VapeTextExtra.TextXAlignment = Enum.TextXAlignment.Right
+					VapeTextExtra.Position = UDim2.fromOffset(offsets[1], offsets[2])
+					VapeLogo.Position = UDim2.new(1, -142, 0, 8)
+					VapeText.Position = UDim2.new(1, -158, 0, (VapeLogo.Visible and (TextGUIBackgroundToggle.Enabled and 41 or 35) or 5) + 5 + (VapeCustomText.Visible and 25 or 0) - offsets[3])
+					VapeCustomText.Position = UDim2.fromOffset(0, VapeLogo.Visible and 35 or 0)
+					VapeCustomText.TextXAlignment = Enum.TextXAlignment.Right
+					VapeBackgroundList.HorizontalAlignment = Enum.HorizontalAlignment.Right
+					VapeBackground.Position = VapeText.Position + UDim2.fromOffset(-60, -2 + offsets[4])
+				else
+					VapeText.TextXAlignment = Enum.TextXAlignment.Left
+					VapeTextExtra.TextXAlignment = Enum.TextXAlignment.Left
+					VapeTextExtra.Position = UDim2.fromOffset(offsets[1], offsets[2])
+					VapeLogo.Position = UDim2.fromOffset(2, 8)
+					VapeText.Position = UDim2.fromOffset(6, (VapeLogo.Visible and (TextGUIBackgroundToggle.Enabled and 41 or 35) or 5) + 5 + (VapeCustomText.Visible and 25 or 0) - offsets[3])
+					VapeCustomText.Position = UDim2.fromOffset(0, VapeLogo.Visible and 35 or 0)
+					VapeCustomText.TextXAlignment = Enum.TextXAlignment.Left
+					VapeBackgroundList.HorizontalAlignment = Enum.HorizontalAlignment.Left
+					VapeBackground.Position = VapeText.Position + UDim2.fromOffset(-4, -2 + offsets[4])
+				end
+			end
+
+			if TextGUIMode.Value == "Drawing" then
+				for i,v in pairs(TextGUIObjects.Labels) do
+					v.Visible = false
+					v:Remove()
+					TextGUIObjects.Labels[i] = nil
+				end
+				for i,v in pairs(TextGUIObjects.ShadowLabels) do
+					v.Visible = false
+					v:Remove()
+					TextGUIObjects.ShadowLabels[i] = nil
+				end
+				for i,v in pairs(backgroundList) do
+					local textdraw = Drawing.new("Text")
+					textdraw.Text = v
+					textdraw.Size = 23 * VapeScale.Scale
+					textdraw.ZIndex = 2
+					textdraw.Position = VapeText.AbsolutePosition + Vector2.new(VapeText.TextXAlignment == Enum.TextXAlignment.Right and (VapeText.AbsoluteSize.X - textdraw.TextBounds.X), ((textdraw.Size - 3) * i) + 6)
+					textdraw.Visible = true
+					local textdraw2 = Drawing.new("Text")
+					textdraw2.Text = textdraw.Text
+					textdraw2.Size = 23 * VapeScale.Scale
+					textdraw2.Position = textdraw.Position + Vector2.new(1, 1)
+					textdraw2.Color = Color3.new()
+					textdraw2.Transparency = 0.5
+					textdraw2.Visible = VapeTextExtra.Visible
+					table.insert(TextGUIObjects.Labels, textdraw)
+					table.insert(TextGUIObjects.ShadowLabels, textdraw2)
+				end
+			end
+
+			for i,v in pairs(VapeBackground:GetChildren()) do
+				table.clear(VapeBackgroundTable)
+				if v:IsA("Frame") then v:Destroy() end
 			end
 			for i,v in pairs(backgroundList) do
-				local textdraw = Drawing.new("Text")
-				textdraw.Text = v
-				textdraw.Size = 23 * VapeScale.Scale
-				textdraw.ZIndex = 2
-				textdraw.Position = VapeText.AbsolutePosition + Vector2.new(VapeText.TextXAlignment == Enum.TextXAlignment.Right and (VapeText.AbsoluteSize.X - textdraw.TextBounds.X), ((textdraw.Size - 3) * i) + 6)
-				textdraw.Visible = true
-				local textdraw2 = Drawing.new("Text")
-				textdraw2.Text = textdraw.Text
-				textdraw2.Size = 23 * VapeScale.Scale
-				textdraw2.Position = textdraw.Position + Vector2.new(1, 1)
-				textdraw2.Color = Color3.new()
-				textdraw2.Transparency = 0.5
-				textdraw2.Visible = VapeTextExtra.Visible
-				table.insert(TextGUIObjects.Labels, textdraw)
-				table.insert(TextGUIObjects.ShadowLabels, textdraw2)
+				local textsize = textService:GetTextSize(v, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000))
+				local backgroundFrame = Instance.new("Frame")
+				backgroundFrame.BorderSizePixel = 0
+				backgroundFrame.BackgroundTransparency = 0.62
+				backgroundFrame.BackgroundColor3 = Color3.new()
+				backgroundFrame.Visible = true
+				backgroundFrame.ZIndex = 0
+				backgroundFrame.LayoutOrder = i
+				backgroundFrame.Size = UDim2.fromOffset(textsize.X + 8, textsize.Y + 3)
+				backgroundFrame.Parent = VapeBackground
+				local backgroundLineFrame = Instance.new("Frame")
+				backgroundLineFrame.Size = UDim2.new(0, 2, 1, 0)
+				backgroundLineFrame.Position = (VapeBackgroundList.HorizontalAlignment == Enum.HorizontalAlignment.Left and UDim2.new() or UDim2.new(1, -2, 0, 0))
+				backgroundLineFrame.BorderSizePixel = 0
+				backgroundLineFrame.Name = "ColorFrame"
+				backgroundLineFrame.Parent = backgroundFrame
+				local backgroundLineExtra = Instance.new("Frame")
+				backgroundLineExtra.BorderSizePixel = 0
+				backgroundLineExtra.BackgroundTransparency = 0.95
+				backgroundLineExtra.BackgroundColor3 = Color3.new()
+				backgroundLineExtra.ZIndex = 0
+				backgroundLineExtra.Size = UDim2.new(1, 0, 0, 2)
+				backgroundLineExtra.Position = UDim2.new(0, 0, 1, -1)
+				backgroundLineExtra.Parent = backgroundFrame
+				table.insert(VapeBackgroundTable, backgroundFrame)
 			end
+
+			GuiLibrary.UpdateUI(GUIColorSlider.Hue, GUIColorSlider.Sat, GUIColorSlider.Value)
 		end
-
-        for i,v in pairs(VapeBackground:GetChildren()) do
-			table.clear(VapeBackgroundTable)
-            if v:IsA("Frame") then v:Destroy() end
-        end
-        for i,v in pairs(backgroundList) do
-            local textsize = textService:GetTextSize(v, VapeText.TextSize, VapeText.Font, Vector2.new(1000000, 1000000))
-            local backgroundFrame = Instance.new("Frame")
-            backgroundFrame.BorderSizePixel = 0
-            backgroundFrame.BackgroundTransparency = 0.62
-            backgroundFrame.BackgroundColor3 = Color3.new()
-            backgroundFrame.Visible = true
-            backgroundFrame.ZIndex = 0
-            backgroundFrame.LayoutOrder = i
-            backgroundFrame.Size = UDim2.fromOffset(textsize.X + 8, textsize.Y + 3)
-            backgroundFrame.Parent = VapeBackground
-            local backgroundLineFrame = Instance.new("Frame")
-            backgroundLineFrame.Size = UDim2.new(0, 2, 1, 0)
-            backgroundLineFrame.Position = (VapeBackgroundList.HorizontalAlignment == Enum.HorizontalAlignment.Left and UDim2.new() or UDim2.new(1, -2, 0, 0))
-            backgroundLineFrame.BorderSizePixel = 0
-            backgroundLineFrame.Name = "ColorFrame"
-            backgroundLineFrame.Parent = backgroundFrame
-            local backgroundLineExtra = Instance.new("Frame")
-            backgroundLineExtra.BorderSizePixel = 0
-            backgroundLineExtra.BackgroundTransparency = 0.95
-            backgroundLineExtra.BackgroundColor3 = Color3.new()
-            backgroundLineExtra.ZIndex = 0
-            backgroundLineExtra.Size = UDim2.new(1, 0, 0, 2)
-            backgroundLineExtra.Position = UDim2.new(0, 0, 1, -1)
-            backgroundLineExtra.Parent = backgroundFrame
-			table.insert(VapeBackgroundTable, backgroundFrame)
-        end
-
-		GuiLibrary.UpdateUI(GUIColorSlider.Hue, GUIColorSlider.Sat, GUIColorSlider.Value)
-	end
+	end)
 end
 
 TextGUI.GetCustomChildren().Parent:GetPropertyChangedSignal("Position"):Connect(TextGUIUpdate)
