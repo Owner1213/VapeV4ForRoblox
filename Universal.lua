@@ -2268,7 +2268,17 @@ run(function()
 	HighJumpMode = HighJump.CreateDropdown({
 		Name = "Mode",
 		List = {"Normal", "CFrame", "Teleport"},
-		Function = function(val) if val == "Teleport" then HighJumpDistance.Object.Visible = true else HighJumpDistance.Object.Visible = false end end
+		Function = function(val) 
+			if val == "Teleport" then 
+				HighJumpDistance.Object.Visible = true 
+				HighJumpBoost.Object.Visible = false
+				HighJumpDelay.Object.Visible = false
+			else 
+				HighJumpDistance.Object.Visible = false 
+				HighJumpBoost.Object.Visible = true
+				HighJumpDelay.Object.Visible = true
+			end
+		end 
 	})
 	HighJumpDistance = HighJump.CreateSlider({
         Name = "TeleportDistance",
