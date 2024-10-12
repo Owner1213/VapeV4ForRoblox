@@ -6180,6 +6180,31 @@ run(function()
 	})
 end)
 
+run(function() 
+	local guiFont = {Enabled = false}
+	local font = {Value = "Arial"}
+
+	guiFont = GuiLibrary.ObjectsThatCanBeSaved.UserInterfaceWindow.Api.CreateOptionsButton({
+        Name = "GUI Font",
+        Function = function(callback) 
+			if callback then
+				if shared.deffont ~= Enum.Font[font.Value] then 
+					shared.deffont = Enum.Font[font.Value]
+				end
+				GuiLibrary.SaveSettings()
+				GuiLibrary.LoadSettings(shared.VapeCustomProfile or "default")
+                guiFont.ToggleButton(true)
+			end
+		end
+	})
+
+	font = guiFont.CreateDropdown({
+		Name = "Font",
+		List = Enum.Font:GetEnumItems(),
+		Function = function(val) end
+	})
+end)
+
 run(function()
 	local FPS = {}
 	local FPSLabel

@@ -1976,6 +1976,7 @@ GUISettings.CreateButton2({
 			WorldWindow = 6,
 			FriendsWindow = 7,
 			TargetsWindow = 8,
+			UserInterfaceWindow = 9,
 			ExploitWindow = 10,
 			ProfilesWindow = 11,
 			["Text GUICustomWindow"] = 12,
