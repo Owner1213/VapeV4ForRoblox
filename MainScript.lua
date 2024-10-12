@@ -1871,7 +1871,7 @@ local teleportConnection = playersService.LocalPlayer.OnTeleport:Connect(functio
 			teleportScript = "shared.VapeCustomProfile = '"..shared.VapeCustomProfile.."'\n"..teleportScript
 		end
 		GuiLibrary.SaveSettings()
-		queueonteleport("shared.deffont = "..shared.deffont.." "..teleportScript)
+		queueonteleport(teleportScript.. " shared.deffont = "..shared.deffont)
     end
 end)
 
