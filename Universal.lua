@@ -2228,7 +2228,7 @@ run(function()
 								until start <= 0
 							end)
 						else
-							entityLibrary.character.HumanoidRootPart.CFrame += Vector3.new(0, 15, 0)
+							entityLibrary.character.HumanoidRootPart.CFrame += Vector3.new(0, HighJumpDistance.Value or 15, 0)
 						end
 					end
 					HighJump.ToggleButton(false)
@@ -2249,7 +2249,7 @@ run(function()
 									until start <= 0
 								end)
 							else
-								entityLibrary.character.HumanoidRootPart.CFrame += Vector3.new(0, 15, 0)
+								entityLibrary.character.HumanoidRootPart.CFrame += Vector3.new(0, HighJumpDistance.Value or 15, 0)
 							end
 						end
 					end)
