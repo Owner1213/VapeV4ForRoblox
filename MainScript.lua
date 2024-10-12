@@ -34,6 +34,7 @@ local vapeAssetTable = {
 	["vape/assets/ExitIcon1.png"] = "rbxassetid://13350771140",
 	["vape/assets/ExploitIcon.png"] = "rbxassetid://104595911114057",
 	["vape/assets/FriendsIcon.png"] = "rbxassetid://13350771464",
+	["vape/assets/GuiIcon.png"] = "rbxassetid://104545383916453",
 	["vape/assets/HoverArrow.png"] = "rbxassetid://13350772201",
 	["vape/assets/HoverArrow2.png"] = "rbxassetid://13350772588",
 	["vape/assets/HoverArrow3.png"] = "rbxassetid://13350773014",
@@ -315,6 +316,11 @@ local Profiles = GuiLibrary.CreateWindow2({
 	Icon = "vape/assets/ProfilesIcon.png",
 	IconSize = 19
 })
+local UserInterface = GuiLibrary.CreateWindow({
+	Name = "UserInterface",
+	Icon = "vape/assets/GuiIcon.png",
+	IconSize = 16
+})
 local Exploit = GuiLibrary.CreateWindow({
 	Name = "Exploit",
 	Icon = "vape/assets/ExploitIcon.png",
@@ -365,6 +371,12 @@ GUI.CreateButton({
 	Function = function(callback) Profiles.SetVisible(callback) end,
 })
 GUI.CreateDivider("CUSTOM")
+GUI.CreateButton({
+    Name = "UserInterface",
+    Function = function(callback) UserInterface.SetVisible(callback) end,
+	Icon = "vape/assets/GuiIcon.png",
+	IconSize = 16
+})
 GUI.CreateButton({
 	Name = "Exploit",
 	Function = function(callback) Exploit.SetVisible(callback) end,
