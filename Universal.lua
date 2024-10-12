@@ -6242,9 +6242,11 @@ run(function()
         Name = "CustomNotification",
         Function = function(callback) 
 			if callback then 
-				shared.notied = Enum.EasingDirection[EasingDirection.Value]
-				shared.noties = Enum.EasingStyle[EasingStyle.Value]
-                shared.notid = Duration.Value
+				repeat task.wait() 
+					shared.notied = Enum.EasingDirection[EasingDirection.Value]
+					shared.noties = Enum.EasingStyle[EasingStyle.Value]
+                	shared.notid = Duration.Value
+				until not CustomNotif.Enabled
 			end
 		end
 	})
