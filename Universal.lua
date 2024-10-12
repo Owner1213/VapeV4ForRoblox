@@ -6218,15 +6218,18 @@ run(function()
 end)
 
 run(function() 
+	-- Initial table setup
 	local CustomNotif = {Enabled = false}
 	local EasingDirection = {Value = "In"}
 	local EasingStyle = {Value = "Sine"}
 	local Duration = {Value = 3}
 
+	-- Clear shared variables
 	shared.notied = nil
 	shared.noties = nil
 	shared.notid = nil
 
+	-- Populate Enums
 	local EasingDirectionEnums = {}
 	local EasingStyleEnums = {}
 
@@ -6235,38 +6238,58 @@ run(function()
 	end
 
 	for i, enumItem in ipairs(Enum.EasingStyle:GetEnumItems()) do
-        EasingStyleEnums[i] = enumItem.Name
-    end
+		EasingStyleEnums[i] = enumItem.Name
+	end
 
+	-- Create the Custom Notification Button
 	CustomNotif = GuiLibrary.ObjectsThatCanBeSaved.UserInterfaceWindow.Api.CreateOptionsButton({
-        Name = "CustomNotification",
-        Function = function(callback) 
+		Name = "CustomNotification",
+		Function = function(callback) 
 			if callback then 
-				repeat task.wait() 
-					shared.notied = Enum.EasingDirection[EasingDirection.Value]
-					shared.noties = Enum.EasingStyle[EasingStyle.Value]
-                	shared.notid = Duration.Value
+				-- Continuously update the shared values while enabled
+				repeat
+					task.wait()
+					shared.notied = Enum.EasingDirection[EasingDirection.Value] or Enum.EasingDirection.In
+					shared.noties = Enum.EasingStyle[EasingStyle.Value] or Enum.EasingStyle.Sine
+					shared.notid = Duration.Value or 3
 				until not CustomNotif.Enabled
 			end
 		end
 	})
+
+	-- Create dropdown for EasingDirection
 	EasingDirection = CustomNotif.CreateDropdown({
-        Name = "EasingDirection",
-        List = EasingDirectionEnums,
-        Function = function(val) end
-    })
-	EasingStyle = CustomNotif.CreateDropdown({
-        Name = "EasingStyle",
-		List = EasingStyleEnums,
-		Function = function(val) end
+		Name = "EasingDirection",
+		List = EasingDirectionEnums,
+		Function = function(val)
+			-- Update EasingDirection.Value based on user selection
+			EasingDirection.Value = val
+		end
 	})
+
+	-- Create dropdown for EasingStyle
+	EasingStyle = CustomNotif.CreateDropdown({
+		Name = "EasingStyle",
+		List = EasingStyleEnums,
+		Function = function(val)
+			-- Update EasingStyle.Value based on user selection
+			EasingStyle.Value = val
+		end
+	})
+
+	-- Create slider for Duration
 	Duration = CustomNotif.CreateSlider({
-        Name = "Duration",
-        Min = 0.01,
-        Max = 1,
-		Default = 0.15
+		Name = "Duration",
+		Min = 0.01,
+		Max = 5,  -- Increased max duration to 5 for better control
+		Default = 3,  -- Set the default value to 3
+		Function = function(val)
+			-- Update Duration.Value based on slider value
+			Duration.Value = val
+		end
 	})
 end)
+
 
 run(function()
 	local FPS = {}
