@@ -1621,6 +1621,11 @@ ModuleSettings.CreateToggle({
 GUIColorSlider = GUI.CreateColorSlider("GUI Theme", function(h, s, v)
 	GuiLibrary.UpdateUI(h, s, v)
 end)
+GUIFontDropDown = GUI.CreateDropdown("GUI Font", List = Enum.Font:GetEnumItems(), function(val) 
+	if val and val ~= nil and shared.deffont then 
+		shared.deffont = Enum.Font[val]
+	end
+end)
 local BlatantModeToggle = GUI.CreateToggle({
 	Name = "Blatant mode",
 	Function = function() end,
