@@ -6218,18 +6218,15 @@ run(function()
 end)
 
 run(function() 
-	-- Initial table setup
 	local CustomNotif = {Enabled = false}
 	local EasingDirection = {Value = "In"}
 	local EasingStyle = {Value = "Sine"}
 	local Duration = {Value = 3}
 
-	-- Clear shared variables
 	shared.notied = nil
 	shared.noties = nil
 	shared.notid = nil
 
-	-- Populate Enums
 	local EasingDirectionEnums = {}
 	local EasingStyleEnums = {}
 
@@ -6241,12 +6238,10 @@ run(function()
 		EasingStyleEnums[i] = enumItem.Name
 	end
 
-	-- Create the Custom Notification Button
 	CustomNotif = GuiLibrary.ObjectsThatCanBeSaved.UserInterfaceWindow.Api.CreateOptionsButton({
 		Name = "CustomNotification",
 		Function = function(callback) 
 			if callback then 
-				-- Continuously update the shared values while enabled
 				repeat
 					task.wait()
 					shared.notied = Enum.EasingDirection[EasingDirection.Value] or Enum.EasingDirection.In
@@ -6257,35 +6252,29 @@ run(function()
 		end
 	})
 
-	-- Create dropdown for EasingDirection
 	EasingDirection = CustomNotif.CreateDropdown({
 		Name = "EasingDirection",
 		List = EasingDirectionEnums,
 		Function = function(val)
-			-- Update EasingDirection.Value based on user selection
-			EasingDirection.Value = val
+			--EasingDirection.Value = val
 		end
 	})
 
-	-- Create dropdown for EasingStyle
 	EasingStyle = CustomNotif.CreateDropdown({
 		Name = "EasingStyle",
 		List = EasingStyleEnums,
 		Function = function(val)
-			-- Update EasingStyle.Value based on user selection
-			EasingStyle.Value = val
+			--EasingStyle.Value = val
 		end
 	})
 
-	-- Create slider for Duration
 	Duration = CustomNotif.CreateSlider({
 		Name = "Duration",
 		Min = 0.01,
-		Max = 5,  -- Increased max duration to 5 for better control
-		Default = 3,  -- Set the default value to 3
+		Max = 1,
+		Default = 0.15,
 		Function = function(val)
-			-- Update Duration.Value based on slider value
-			Duration.Value = val
+			--Duration.Value = val
 		end
 	})
 end)
