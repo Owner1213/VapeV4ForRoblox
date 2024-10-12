@@ -6200,9 +6200,13 @@ run(function()
 
 	font = guiFont.CreateDropdown({
 		Name = "Font",
-		List = Enum.Font:GetEnumItems(),
+		List = table.create(#Enum.Font:GetEnumItems()),
 		Function = function(val) end
 	})
+	
+	for i, enumItem in ipairs(Enum.Font:GetEnumItems()) do
+		font.List[i] = enumItem.Name
+	end
 end)
 
 run(function()
