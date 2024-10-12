@@ -2217,7 +2217,7 @@ run(function()
 						HighJumpTick = tick() + (HighJumpDelay.Value / 10)
 						if HighJumpMode.Value == "Normal" then
 							entityLibrary.character.HumanoidRootPart.Velocity = entityLibrary.character.HumanoidRootPart.Velocity + Vector3.new(0, HighJumpBoost.Value, 0)
-						elseif HighJumpMode.Value == "CFrame"
+						elseif HighJumpMode.Value == "CFrame" then
 							task.spawn(function()
 								local start = HighJumpBoost.Value
 								repeat
@@ -2227,7 +2227,7 @@ run(function()
 								until start <= 0
 							end)
 						else
-							lplr.Character:SetPrimaryPartCFrame(lplr.Character.PrimaryPart.CFrame + Vector3.new(0, 15, 0))
+							entityLibrary.character:SetPrimaryPartCFrame(entityLibrary.character.PrimaryPart.CFrame + Vector3.new(0, 15, 0))
 						end
 					end
 					HighJump.ToggleButton(false)
@@ -2238,7 +2238,7 @@ run(function()
 							debounce = tick()
 							if HighJumpMode.Value == "Normal" then
 								entityLibrary.character.HumanoidRootPart.Velocity = entityLibrary.character.HumanoidRootPart.Velocity + Vector3.new(0, HighJumpBoost.Value, 0)
-							else
+							elseif HighJumpMode.Value == "CFrame" then
 								task.spawn(function()
 									local start = HighJumpBoost.Value
 									repeat
@@ -2247,6 +2247,8 @@ run(function()
 										task.wait()
 									until start <= 0
 								end)
+							else
+								entityLibrary.character:SetPrimaryPartCFrame(entityLibrary.character.PrimaryPart.CFrame + Vector3.new(0, 15, 0))
 							end
 						end
 					end)
