@@ -6486,7 +6486,9 @@ run(function()
 		Name = "WhitelistOptions",
 		Function = function(callback) 
 			if callback then 
-				UpdateChatTag(ChatTagText.Value, ChatTagColor.Value or Color3.fromRGB(255, 0, 0))
+				if ChatTag.Enabled then 
+					UpdateChatTag(ChatTagText.Value, Color3.ToRGB(ChatTagColor.Value), true)
+				end
 			end
 		end
 	})
