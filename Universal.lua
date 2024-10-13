@@ -6511,7 +6511,7 @@ run(function()
 	local WhitelistOptions = {Enabled = false}
 	local ChatTag = {Enabled = false}
 	local ChatTagText = {Value = "Developer"}
-    local ChatTagColor = {Value = 0}
+    local ChatTagColor = {Hue = 0, Sat = 0, Val = 0}
 
 	WhitelistOptions = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
 		Name = "WhitelistOptions",
