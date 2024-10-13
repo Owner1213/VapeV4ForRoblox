@@ -180,7 +180,7 @@ Load.Position = UDim2.new(0.5, 0, 0.699999988, 0)
 Load.Size = UDim2.new(0.176211447, 0, 0.0575373992, 0)
 Load.AutoButtonColor = false
 Load.Font = Enum.Font.GothamMedium
-Load.Text = "Load"
+Load.Text = "Play"
 Load.TextColor3 = Color3.fromRGB(46, 47, 47)
 Load.TextScaled = true
 Load.TextSize = 14.000
@@ -213,22 +213,32 @@ local bartween = TweenSer:Create(Bar2, BarTweenInfo, {Size = UDim2.new(-0.999, 0
 
 local function UpdateStatus(text) 
 	Status.Text = text
-end UpdateStatus("Loading...")
+end 
+local function w(del) 
+    task.wait(del or 1)
+end
+if shared and shared.GuiLibrary then 
+    UpdateStatus("Reinject Detected!")
+    shared.GuiLibrary.SelfDestruct() 
+    w(1.5)
+end
 
+UpdateStatus("Loading...")
+w(.01)
 guitween:Play()
 guitween.Completed:Wait()
-
+w(1)
 
 bartween:Play()
 bartween.Completed:Wait()
 UpdateStatus("Almost there..")
-if shared and shared.GuiLibrary then shared.GuiLibrary.SelfDestruct() end
+w(.1)
 shared.deffont = Enum.Font.GothamMedium
 shared.notied = nil
 shared.noties = nil
 shared.notid = nil
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/VapeV4ForRoblox/main/NewMainScript.lua", true))()
-repeat task.wait() until vapefullload
 UpdateStatus("Finished!")
+w()
 Bar:Destroy()
 Load.Visible = true
