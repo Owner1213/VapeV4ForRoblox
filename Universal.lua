@@ -6181,7 +6181,7 @@ run(function()
 	})
 end)
 
---[[local function infonotif(title, text, delay)
+local function infonotif(title, text, delay)
 	local suc, res = pcall(function()
 		local frame = GuiLibrary.CreateNotification(title, text, delay, "assets/InfoNotification.png")
 		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255,255,255)
@@ -6190,7 +6190,7 @@ end)
 	return (suc and res)
 end
 
-run(function() 
+--[[run(function() 
 	local guiFont = {Enabled = false}
 	local font = {Value = "Arial"}
 	local fonttable = {}
