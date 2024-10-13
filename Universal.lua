@@ -6429,7 +6429,7 @@ run(function()
 	createKeystroke(Enum.KeyCode.Space, UDim2.new(0, 0, 0, 83), UDim2.new(0, 25, 0, -10))
 end)
 
---[[task.spawn(function() 
+task.spawn(function() 
 	if shared.deffont and shared.deffont ~= Enum.Font.Arial then 
 		infonotif("Vape: Font Loaded.", "Font set to "..string.gsub(tostring(shared.deffont), "Enum.Font.", "")..".", 5)
 	end
@@ -6449,7 +6449,7 @@ for i, v in ipairs(wl) do
 	end
 end
 
-local function UpdateChatTag(t,col,cb) 
+--[[local function UpdateChatTag(t,col,cb) 
 	if cb then 
 		local textChatService = game:GetService("TextChatService")
 		wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
