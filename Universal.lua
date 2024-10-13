@@ -6093,7 +6093,7 @@ run(function()
 end)
 
 
---[[run(function() 
+run(function() 
 	local iy = {Enabled = false}
 
 	iy = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
@@ -6113,7 +6113,7 @@ end)
 	end
 end)
 
-run(function() 
+--[[run(function() 
 	local infjump = {Enabled = false}
 	local con;
 
