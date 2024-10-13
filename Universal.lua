@@ -6438,44 +6438,8 @@ end)
 local wl
 wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
 
-
-
-for i, v in ipairs(wl) do 
-	if wl[i].u == lplr.Name then 
-		infonotif("Vape: Whitelist Detected.", "We fetched a whitelist!", 5.5)
-		break
-	else
-		return
-	end
-end
-
-local function UpdateChatTag(t,col,cb) 
-	if cb then 
-		local textChatService = game:GetService("TextChatService")
-		wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
-
-		textChatService.OnIncomingMessage = function(message: TextChatMessage)
-			local properties = Instance.new("TextChatMessageProperties")
-			
-			if message.TextSource then
-				local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-				
-				local function color3ToHex(color)
-					return string.format("%02X%02X%02X", math.floor(color.R * 255), math.floor(color.G * 255), math.floor(color.B * 255))
-				end
-				
-				for i,v in ipairs(wl) do 
-					if wl[i].u == player.Name then 
-						local hexColor = color3ToHex(col)
-						properties.PrefixText = "<font color='#"..hexColor.."'>["..t.."]</font> ".. "<font color='#e33e19'>["..wl[i].dcn.."]</font> " .. message.PrefixText
-						break
-					end
-				end
-			end
-
-			return properties
-		end
-	end
+local function color3ToHex(color)
+	return string.format("%02X%02X%02X", math.floor(color.R * 255), math.floor(color.G * 255), math.floor(color.B * 255))
 end
 
 local function hsvToRgb(h, s, v)
@@ -6512,43 +6476,80 @@ local function hsvToRgb(h, s, v)
 end
 
 
+for i, v in ipairs(wl) do 
+	if wl[i].u == lplr.Name then 
+		infonotif("Vape: Whitelist Detected.", "We fetched a whitelist!", 5.5)
+		break
+	else
+		return
+	end
+end
+local textChatService = game:GetService("TextChatService")
+local function UpdateChatTag(t,h,s,v,cb) 
+	if cb then 
+		
+		wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
+
+		textChatService.OnIncomingMessage = function(message: TextChatMessage)
+			local properties = Instance.new("TextChatMessageProperties")
+			
+			if message.TextSource then
+				local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+				
+				
+				
+				for i,v in ipairs(wl) do 
+					if wl[i].u == player.Name then 
+						local hexColor = color3ToHex(color3.fromRGB(hsvToRgb(h,s,v)))
+						properties.PrefixText = "<font color='#"..hexColor.."'>["..t.."]</font> ".. "<font color='#e33e19'>["..wl[i].dcn.."]</font> " .. message.PrefixText
+						break
+					end
+				end
+			end
+
+			return properties
+		end
+	end
+end
+
+local function DisableChatTag() 
+	textChatService.OnIncomingMessage = nil
+end
+
 
 run(function() 
 	local WhitelistOptions = {Enabled = false}
+	
 	local ChatTag = {Enabled = false}
-	local ChatTagText = {Value = "Developer"}
-    local ChatTagColor = {Hue = 0, Sat = 0, Val = 0}
+	local ChatTagText = {Value = "SCRIPT USER"}
+	local ChatTagCol = {Value = 0.44}
+
+	local ForceField = {Enabled = false}
+	local ForceFieldObj
+
 
 	WhitelistOptions = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
 		Name = "WhitelistOptions",
 		Function = function(callback) 
 			if callback then 
-				repeat
-					task.wait()
-					if ChatTag.Enabled then 
-						local r, g, b = hsvToRgb(ChatTagColor.Hue, ChatTagColor.Sat, ChatTagColor.Val)
-						UpdateChatTag(ChatTagText.Value, Color3.fromRGB(r, g, b), true)
-					end
-				until not WhitelistOptions.Enabled
+				task.spawn(function() 
+					RunLoops:BindToHeartbeat("ChatTag", function() 
+						if ChatTag.Enabled then 
+							UpdateChatTag(ChatTagText.Value, ChatTagCol.Hue, ChatTagCol.Sat, ChatTagCol.Val, true)
+						end
+					end)
+				end)
+				if ForceField.Enabled then 
+					ForceFieldObj = Instance.new("ForceField")
+                    ForceFieldObj.Parent = entityLibrary.character.HumanoidRootPart or entityLibrary.character.PrimaryPart
+				end
+			else
+				RunLoops:UnbindFromHeartbeat("ChatTag")
+				if ForceFieldObj and ForceFieldObj.Parent then 
+                    ForceFieldObj:Destroy()
+                end
+				
 			end
 		end
 	})
-
-	ChatTag = WhitelistOptions.CreateToggle({
-		Name = "ChatTag",
-		Function = function(val) 
-			ChatTagText.Object.Visible = val ChatTagColor.Object.Visible = val
-		end
-	})
-	ChatTagText = WhitelistOptions.CreateDropdown({
-        Name = "ChatTagText",
-		List = {"SCRIPT USER", "VIP", "Known", "Booster", "Render Developer", "Developer", "Owner"},
-        Function = function(val) end
-	})
-	ChatTagColor = WhitelistOptions.CreateColorSlider({
-		Name = "ChatTagColor",
-		Function = function(Hue, Sat, Val) end
-	})
-	ChatTagText.Object.Visible = false 
-	ChatTagColor.Object.Visible = false
 end)
