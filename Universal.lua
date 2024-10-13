@@ -6151,7 +6151,7 @@ run(function()
 	})
 end)
 
---[[run(function() 
+run(function() 
 	local fixcam = {Enabled = false}
 	
 	local camsbj, camtype, cmzd, cmxzd, cammode;
@@ -6181,7 +6181,7 @@ end)
 	})
 end)
 
-local function infonotif(title, text, delay)
+--[[local function infonotif(title, text, delay)
 	local suc, res = pcall(function()
 		local frame = GuiLibrary.CreateNotification(title, text, delay, "assets/InfoNotification.png")
 		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255,255,255)
