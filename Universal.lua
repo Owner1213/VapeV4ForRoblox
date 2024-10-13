@@ -6478,7 +6478,7 @@ local function UpdateChatTag(t,col,cb)
 	end
 end
 
---[[run(function() 
+run(function() 
 	local WhitelistOptions = {Enabled = false}
 	local ChatTag = {Enabled = false}
 	local ChatTagText = {Value = "Developer"}
@@ -6511,4 +6511,4 @@ end
 		Function = function(hue, sat, val) end
 	})
 	ChatTagText.Object.Visible = false ChatTagColor.Object.Visible = false
-end)]]
+end)
