@@ -6496,6 +6496,9 @@ run(function()
 					if ForceField.Enabled and not ForceFieldObj then 
 						ForceFieldObj = Instance.new("ForceField")
 						ForceFieldObj.Parent = entityLibrary.character.HumanoidRootPart or entityLibrary.character.PrimaryPart
+					elseif ForceFieldObj and not ForceField.Enabled then
+						ForceFieldObj:Destroy()
+                        ForceFieldObj = nil
 					end
 				end)
 			else
