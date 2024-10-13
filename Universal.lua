@@ -6521,7 +6521,7 @@ run(function()
 				task.spawn(function() 
 					RunLoops:BindToHeartbeat("ChatTag", function() 
 						if ChatTag.Enabled then 
-							UpdateChatTag(ChatTagText.Value, hsvToHex(ChatTagCol.Hue, ChatTagCol.Sat, ChatTagCol.Value))
+							UpdateChatTag(ChatTagText.Value, Color3.fromHSV(ChatTagCol.Hue, ChatTagCol.Sat, ChatTagCol.Value):ToHex())
 						end
 					end)
 				end)
