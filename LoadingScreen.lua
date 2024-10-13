@@ -220,7 +220,6 @@ end
 
 guitween:Play()
 guitween.Completed:Wait()
-w(1.01)
 
 if shared and shared.GuiLibrary then 
     UpdateStatus("Reinject Detected!")
