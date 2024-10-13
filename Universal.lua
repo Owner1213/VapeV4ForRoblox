@@ -6113,7 +6113,7 @@ run(function()
 	end
 end)
 
---[[run(function() 
+run(function() 
 	local infjump = {Enabled = false}
 	local con;
 
@@ -6132,7 +6132,7 @@ end)
 	})
 end)
 
-run(function() 
+--[[run(function() 
 	local reset = {Enabled = false}
 
 	reset = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
