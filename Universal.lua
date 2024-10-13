@@ -6438,41 +6438,37 @@ end)
 local wl
 wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
 
-local function color3ToHex(color)
-	return string.format("%02X%02X%02X", math.floor(color.R * 255), math.floor(color.G * 255), math.floor(color.B * 255))
-end
+local function hsvToHex(h, s, v)
+    local function hsvToRgb(h, s, v)
+        local r, g, b
 
-local function hsvToRgb(h, s, v)
-    -- ensure h, s, v are valid numbers, default to 0 if nil
-    h = h or 0
-    s = s or 0
-    v = v or 0
+        local i = math.floor(h * 6)
+        local f = h * 6 - i
+        local p = v * (1 - s)
+        local q = v * (1 - f * s)
+        local t = v * (1 - (1 - f) * s)
 
-    local r, g, b
+        i = i % 6
 
-    local i = math.floor(h * 6)
-    local f = h * 6 - i
-    local p = v * (1 - s)
-    local q = v * (1 - f * s)
-    local t = v * (1 - (1 - f) * s)
+        if i == 0 then
+            r, g, b = v, t, p
+        elseif i == 1 then
+            r, g, b = q, v, p
+        elseif i == 2 then
+            r, g, b = p, v, t
+        elseif i == 3 then
+            r, g, b = p, q, v
+        elseif i == 4 then
+            r, g, b = t, p, v
+        elseif i == 5 then
+            r, g, b = v, p, q
+        end
 
-    i = i % 6
-
-    if i == 0 then
-        r, g, b = v, t, p
-    elseif i == 1 then
-        r, g, b = q, v, p
-    elseif i == 2 then
-        r, g, b = p, v, t
-    elseif i == 3 then
-        r, g, b = p, q, v
-    elseif i == 4 then
-        r, g, b = t, p, v
-    elseif i == 5 then
-        r, g, b = v, p, q
+        return math.floor(r * 255), math.floor(g * 255), math.floor(b * 255)
     end
 
-    return r * 255, g * 255, b * 255
+    local r, g, b = hsvToRgb(h, s, v)
+    return string.format("#%02X%02X%02X", r, g, b)
 end
 
 
@@ -6484,38 +6480,28 @@ for i, v in ipairs(wl) do
 		return
 	end
 end
-local textChatService = game:GetService("TextChatService")
-local function UpdateChatTag(t,h,s,v,cb) 
-	if cb then 
-		
-		wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
-
-		textChatService.OnIncomingMessage = function(message: TextChatMessage)
-			local properties = Instance.new("TextChatMessageProperties")
-			
-			if message.TextSource then
-				local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-				
-				
-				
-				for i,v in ipairs(wl) do 
-					if wl[i].u == player.Name then 
-						local hexColor = color3ToHex(Color3.fromRGB(hsvToRgb(h,s,v)))
-						properties.PrefixText = "<font color='#"..hexColor.."'>["..t.."]</font> ".. "<font color='#e33e19'>["..wl[i].dcn.."]</font> " .. message.PrefixText
-						break
-					end
-				end
-			end
-
-			return properties
-		end
-	end
-end
-
 local function DisableChatTag() 
 	textChatService.OnIncomingMessage = nil
 end
 
+local function UpdateChatTag(text, hex)
+	textChatService.OnIncomingMessage = function(message: TextChatMessage)
+		local properties = Instance.new("TextChatMessageProperties")
+		
+		if message.TextSource then
+			local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+			
+			for i,v in ipairs(wl) do 
+				if v.u == player.Name then 
+					properties.PrefixText = "<font color='#"..hex.."'>["..text.."]</font> ".. "<font color='#ff8400'>["..v.dcn.."]</font> " .. message.PrefixText
+					break
+				end
+			end
+		end
+
+		return properties
+	end
+end
 
 run(function() 
 	local WhitelistOptions = {Enabled = false}
@@ -6535,7 +6521,7 @@ run(function()
 				task.spawn(function() 
 					RunLoops:BindToHeartbeat("ChatTag", function() 
 						if ChatTag.Enabled then 
-							UpdateChatTag(ChatTagText.Value, ChatTagCol.Hue, ChatTagCol.Sat, ChatTagCol.Value, true)
+							UpdateChatTag(ChatTagText.Value, hsvToHex(ChatTagCol.Hue, ChatTagCol.Sat, ChatTagCol.Value))
 						end
 					end)
 				end)
@@ -6570,9 +6556,9 @@ run(function()
 	ChatTagCol = WhitelistOptions.CreateColorSlider({
 		Name = "ChatTagColor",
 		Function = function(h, s, v) 
-			ChatTagCol.Hue = h
-            ChatTagCol.Sat = s
-            ChatTagCol.Value = v
+			--ChatTagCol.Hue = h
+            --ChatTagCol.Sat = s
+            --ChatTagCol.Value = v
 		end
 	})
 end)
