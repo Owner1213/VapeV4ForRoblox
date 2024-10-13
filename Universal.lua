@@ -750,15 +750,6 @@ do
 	end
 end
 
-GuiLibrary.SelfDestructEvent.Event:Connect(function()
-	vapeInjected = false
-	entityLibrary.selfDestruct()
-	for i, v in pairs(vapeConnections) do
-		if v.Disconnect then pcall(function() v:Disconnect() end) continue end
-		if v.disconnect then pcall(function() v:disconnect() end) continue end
-	end
-end)
-
 run(function()
 	local radargameCamera = Instance.new("Camera")
 	radargameCamera.FieldOfView = 45
@@ -6444,15 +6435,29 @@ task.spawn(function()
 			local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
 			local wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
 			
+			local function color3ToHex(color)
+				return string.format("%02X%02X%02X", math.floor(color.R * 255), math.floor(color.G * 255), math.floor(color.B * 255))
+			end
 			
 			for i,v in ipairs(wl) do 
 				if wl[i].u == player.Name then 
-					properties.PrefixText = "<font color='#"..wl[i].tc:ToHex().."'>["..wl[i].t.."]</font> ".. "<font color='#ff8400'>["..wl[i].dcn.."]</font> " .. message.PrefixText
-                    break
+					local hexColor = color3ToHex(wl[i].tc)
+					properties.PrefixText = "<font color='#"..hexColor.."'>["..wl[i].t.."]</font> ".. "<font color='#ff8400'>["..wl[i].dcn.."]</font> " .. message.PrefixText
+					break
 				end
 			end
 		end
 
 		return properties
 	end
+end)
+
+GuiLibrary.SelfDestructEvent.Event:Connect(function()
+	vapeInjected = false
+	entityLibrary.selfDestruct()
+	for i, v in pairs(vapeConnections) do
+		if v.Disconnect then pcall(function() v:Disconnect() end) continue end
+		if v.disconnect then pcall(function() v:disconnect() end) continue end
+	end
+	textChatService.OnIncomingMessage = nil
 end)
