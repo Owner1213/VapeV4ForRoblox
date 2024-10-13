@@ -6425,7 +6425,7 @@ task.spawn(function()
 	end
 end)
 
-local wl
+--[[local wl
 wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
 
 GuiLibrary.SelfDestructEvent.Event:Connect(function()
@@ -6447,7 +6447,7 @@ for i, v in ipairs(wl) do
 	end
 end
 
---[[local function UpdateChatTag(t,col,cb) 
+local function UpdateChatTag(t,col,cb) 
 	if cb then 
 		local textChatService = game:GetService("TextChatService")
 		wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
