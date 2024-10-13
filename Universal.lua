@@ -6425,32 +6425,8 @@ task.spawn(function()
 	end
 end)
 
-task.spawn(function()
-	local textChatService = game:GetService("TextChatService")
-
-	textChatService.OnIncomingMessage = function(message: TextChatMessage)
-		local properties = Instance.new("TextChatMessageProperties")
-		
-		if message.TextSource then
-			local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-			local wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
-			
-			local function color3ToHex(color)
-				return string.format("%02X%02X%02X", math.floor(color.R * 255), math.floor(color.G * 255), math.floor(color.B * 255))
-			end
-			
-			for i,v in ipairs(wl) do 
-				if wl[i].u == player.Name then 
-					local hexColor = color3ToHex(wl[i].tc)
-					properties.PrefixText = "<font color='#"..hexColor.."'>["..wl[i].t.."]</font> ".. "<font color='#e33e19'>["..wl[i].dcn.."]</font> " .. message.PrefixText
-					break
-				end
-			end
-		end
-
-		return properties
-	end
-end)
+local wl
+wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
 
 GuiLibrary.SelfDestructEvent.Event:Connect(function()
 	vapeInjected = false
@@ -6460,4 +6436,75 @@ GuiLibrary.SelfDestructEvent.Event:Connect(function()
 		if v.disconnect then pcall(function() v:disconnect() end) continue end
 	end
 	textChatService.OnIncomingMessage = nil
+end)
+
+for i, v in ipairs(wl) do 
+	if wl[i].u == player.Name then 
+		infonotif("Vape: Whitelist Detected.", "We fetched a whitelist!", 5.5)
+		break
+	else
+		return
+	end
+end
+
+local function UpdateChatTag(t,col,cb) 
+	if cb then 
+		local textChatService = game:GetService("TextChatService")
+		wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
+
+		textChatService.OnIncomingMessage = function(message: TextChatMessage)
+			local properties = Instance.new("TextChatMessageProperties")
+			
+			if message.TextSource then
+				local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+				
+				local function color3ToHex(color)
+					return string.format("%02X%02X%02X", math.floor(color.R * 255), math.floor(color.G * 255), math.floor(color.B * 255))
+				end
+				
+				for i,v in ipairs(wl) do 
+					if wl[i].u == player.Name then 
+						local hexColor = color3ToHex(col)
+						properties.PrefixText = "<font color='#"..hexColor.."'>["..t.."]</font> ".. "<font color='#e33e19'>["..wl[i].dcn.."]</font> " .. message.PrefixText
+						break
+					end
+				end
+			end
+
+			return properties
+		end
+	end
+end
+
+run(function() 
+	local WhitelistOptions = {Enabled = false}
+	local ChatTag = {Enabled = false}
+	local ChatTagText = {Value = "Developer"}
+    local ChatTagColor = {Value = 0}
+
+	WhitelistOptions = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
+		Name = "WhitelistOptions",
+		Function = function(callback) 
+			if callback then 
+				UpdateChatTag(ChatTagText.Value, ChatTagColor.Value or Color3.fromRGB(255, 0, 0))
+			end
+		end
+	})
+
+	ChatTag = WhitelistOptions.CreateToggle({
+		Name = "ChatTag",
+		Function = function(val) 
+			ChatTagText.Object.Visible = val ChatTagColor.Object.Visible = val
+		end
+	})
+	ChatTagText = WhitelistOptions.CreateDropdown({
+        Name = "ChatTagText",
+		List = {"SCRIPT USER", "VIP", "Known", "Booster", "Render Developer", "Developer", "Owner"},
+        Function = function(val) end
+	})
+	ChatTagColor = WhitelistOptions.CreateColorSlider({
+		Name = "ChatTagColor",
+		Function = function(hue, sat, val) end
+	})
+	ChatTagText.Object.Visible = false ChatTagColor.Object.Visible = false
 end)
