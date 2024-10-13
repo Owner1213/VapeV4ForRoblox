@@ -6490,6 +6490,7 @@ run(function()
 			if callback then 
 				if ChatTag.Enabled then 
 					UpdateChatTag(ChatTagText.Value, Color3.fromRGB(255,0,0), true)
+					print(ChatTagColor.Value)
 				end
 			end
 		end
