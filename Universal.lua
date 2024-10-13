@@ -6486,21 +6486,25 @@ run(function()
 		Function = function(callback) 
 			if callback then 
 				task.spawn(function() 
-					RunLoops:BindToHeartbeat("ChatTag", function() 
+					RunLoops:BindToRenderStep("ChatTag", function() 
 						if ChatTag.Enabled then 
 							UpdateChatTag(ChatTagText.Value, Color3.fromHSV(ChatTagCol.Hue, ChatTagCol.Sat, ChatTagCol.Value):ToHex())
 						end
 					end)
 				end)
-				if ForceField.Enabled then 
-					ForceFieldObj = Instance.new("ForceField")
-                    ForceFieldObj.Parent = entityLibrary.character.HumanoidRootPart or entityLibrary.character.PrimaryPart
-				end
+				RunLoops:BindToRenderStep("ForceField", function() 
+					if ForceField.Enabled and not ForceFieldObj then 
+						ForceFieldObj = Instance.new("ForceField")
+						ForceFieldObj.Parent = entityLibrary.character.HumanoidRootPart or entityLibrary.character.PrimaryPart
+					end
+				end)
 			else
 				RunLoops:UnbindFromHeartbeat("ChatTag")
+				RunLoops:UnbindFromHeartbeat("ForceField")
 				DisableChatTag()
 				if ForceFieldObj and ForceFieldObj.Parent then 
                     ForceFieldObj:Destroy()
+					ForceFieldObj = nil
                 end
 			end
 		end
