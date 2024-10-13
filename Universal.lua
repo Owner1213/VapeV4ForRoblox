@@ -6522,7 +6522,7 @@ run(function()
 	
 	local ChatTag = {Enabled = false}
 	local ChatTagText = {Value = "SCRIPT USER"}
-	local ChatTagCol = {Value = 0.44}
+	local ChatTagCol = {Hue = 0.44, Sat = 1, Val = 1}
 
 	local ForceField = {Enabled = false}
 	local ForceFieldObj
