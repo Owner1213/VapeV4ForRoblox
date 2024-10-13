@@ -6439,7 +6439,7 @@ GuiLibrary.SelfDestructEvent.Event:Connect(function()
 end)
 
 for i, v in ipairs(wl) do 
-	if wl[i].u == player.Name then 
+	if wl[i].u == lplr.Name then 
 		infonotif("Vape: Whitelist Detected.", "We fetched a whitelist!", 5.5)
 		break
 	else
