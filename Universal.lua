@@ -6535,7 +6535,7 @@ run(function()
 				task.spawn(function() 
 					RunLoops:BindToHeartbeat("ChatTag", function() 
 						if ChatTag.Enabled then 
-							UpdateChatTag(ChatTagText.Value, ChatTagCol.Hue, ChatTagCol.Sat, ChatTagCol.Val, true)
+							UpdateChatTag(ChatTagText.Value, ChatTagCol.Hue, ChatTagCol.Sat, ChatTagCol.Value, true)
 						end
 					end)
 				end)
