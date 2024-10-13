@@ -6442,7 +6442,7 @@ task.spawn(function()
 			for i,v in ipairs(wl) do 
 				if wl[i].u == player.Name then 
 					local hexColor = color3ToHex(wl[i].tc)
-					properties.PrefixText = "<font color='#"..hexColor.."'>["..wl[i].t.."]</font> ".. "<font color='#ff8400'>["..wl[i].dcn.."]</font> " .. message.PrefixText
+					properties.PrefixText = "<font color='#"..hexColor.."'>["..wl[i].t.."]</font> ".. "<font color='#e33e19'>["..wl[i].dcn.."]</font> " .. message.PrefixText
 					break
 				end
 			end
