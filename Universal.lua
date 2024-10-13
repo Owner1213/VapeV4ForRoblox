@@ -6218,7 +6218,7 @@ run(function()
 	})
 end)
 
---[[run(function() 
+run(function() 
 	local CustomNotif = {Enabled = false}
 	local EasingDirection = {Value = "In"}
 	local EasingStyle = {Value = "Sine"}
@@ -6281,7 +6281,7 @@ end)
 end)
 
 
-run(function()
+--[[run(function()
 	local FPS = {}
 	local FPSLabel
 	FPS = GuiLibrary.CreateLegitModule({
