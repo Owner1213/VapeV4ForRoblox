@@ -6523,9 +6523,11 @@ run(function()
 		Name = "WhitelistOptions",
 		Function = function(callback) 
 			if callback then 
-				repeat task.wait()
+				repeat
+					task.wait()
 					if ChatTag.Enabled then 
-						UpdateChatTag(ChatTagText.Value, Color3.fromRGB(hsvToRgb(ChatTagColor.Hue, ChatTagColor.Sat, ChatTagColor.Val)), true)
+						local r, g, b = hsvToRgb(ChatTagColor.Hue, ChatTagColor.Sat, ChatTagColor.Val)
+						UpdateChatTag(ChatTagText.Value, Color3.fromRGB(r, g, b), true)
 					end
 				until not WhitelistOptions.Enabled
 			end
