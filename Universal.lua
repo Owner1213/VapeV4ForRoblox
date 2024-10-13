@@ -750,6 +750,16 @@ do
 	end
 end
 
+GuiLibrary.SelfDestructEvent.Event:Connect(function()
+	vapeInjected = false
+	entityLibrary.selfDestruct()
+	for i, v in pairs(vapeConnections) do
+		if v.Disconnect then pcall(function() v:Disconnect() end) continue end
+		if v.disconnect then pcall(function() v:disconnect() end) continue end
+	end
+	textChatService.OnIncomingMessage = nil
+end)
+
 run(function()
 	local radargameCamera = Instance.new("Camera")
 	radargameCamera.FieldOfView = 45
@@ -6428,15 +6438,7 @@ end)
 --[[local wl
 wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
 
-GuiLibrary.SelfDestructEvent.Event:Connect(function()
-	vapeInjected = false
-	entityLibrary.selfDestruct()
-	for i, v in pairs(vapeConnections) do
-		if v.Disconnect then pcall(function() v:Disconnect() end) continue end
-		if v.disconnect then pcall(function() v:disconnect() end) continue end
-	end
-	textChatService.OnIncomingMessage = nil
-end)
+
 
 for i, v in ipairs(wl) do 
 	if wl[i].u == lplr.Name then 
