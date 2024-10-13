@@ -211,6 +211,9 @@ local BarTweenInfo = TweenInfo.new(math.random(1.55,3), Enum.EasingStyle.Exponen
 local guitween = TweenSer:Create(Main, GuiOpeningInfo, {Size = UDim2.new(1,0,1,0)})
 local bartween = TweenSer:Create(Bar2, BarTweenInfo, {Size = UDim2.new(-0.999, 0,1, 0)})
 
+guitween:Play()
+guitween.Completed:Wait()
+w(1.01)
 local function UpdateStatus(text) 
 	Status.Text = text
 end 
@@ -224,10 +227,7 @@ if shared and shared.GuiLibrary then
 end
 
 UpdateStatus("Loading...")
-w(.01)
-guitween:Play()
-guitween.Completed:Wait()
-w(1)
+
 
 bartween:Play()
 bartween.Completed:Wait()
