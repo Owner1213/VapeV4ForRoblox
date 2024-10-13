@@ -6190,7 +6190,7 @@ local function infonotif(title, text, delay)
 	return (suc and res)
 end
 
---[[run(function() 
+run(function() 
 	local guiFont = {Enabled = false}
 	local font = {Value = "Arial"}
 	local fonttable = {}
@@ -6218,7 +6218,7 @@ end
 	})
 end)
 
-run(function() 
+--[[run(function() 
 	local CustomNotif = {Enabled = false}
 	local EasingDirection = {Value = "In"}
 	local EasingStyle = {Value = "Sine"}
