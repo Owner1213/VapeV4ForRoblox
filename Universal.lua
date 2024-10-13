@@ -6093,7 +6093,7 @@ run(function()
 end)
 
 
-run(function() 
+--[[run(function() 
 	local iy = {Enabled = false}
 
 	iy = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
@@ -6104,12 +6104,12 @@ run(function()
 				iy.ToggleButton(true)
 				shared.iyload = true
 				task.wait()
-				--GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteYieldButton.Visible = false
+				GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteYieldButton.Visible = false
 			end
 		end
 	})
 	if shared.iyload then 
-		--GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteYieldButton.Visible = false
+		GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteYieldButton.Visible = false
 	end
 end)
 
@@ -6435,7 +6435,7 @@ task.spawn(function()
 	end
 end)
 
---[[local wl
+local wl
 wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
 
 
