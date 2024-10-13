@@ -6447,7 +6447,7 @@ for i, v in ipairs(wl) do
 	end
 end
 
-local function UpdateChatTag(t,col,cb) 
+--[[local function UpdateChatTag(t,col,cb) 
 	if cb then 
 		local textChatService = game:GetService("TextChatService")
 		wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
@@ -6476,7 +6476,7 @@ local function UpdateChatTag(t,col,cb)
 	end
 end
 
---[[run(function() 
+run(function() 
 	local WhitelistOptions = {Enabled = false}
 	local ChatTag = {Enabled = false}
 	local ChatTagText = {Value = "Developer"}
