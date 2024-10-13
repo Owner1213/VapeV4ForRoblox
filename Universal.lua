@@ -6479,6 +6479,11 @@ local function UpdateChatTag(t,col,cb)
 end
 
 local function hsvToRgb(h, s, v)
+    -- ensure h, s, v are valid numbers, default to 0 if nil
+    h = h or 0
+    s = s or 0
+    v = v or 0
+
     local r, g, b
 
     local i = math.floor(h * 6)
@@ -6505,6 +6510,7 @@ local function hsvToRgb(h, s, v)
 
     return r * 255, g * 255, b * 255
 end
+
 
 
 run(function() 
