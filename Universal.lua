@@ -6094,12 +6094,12 @@ run(function()
 				iy.ToggleButton(true)
 				shared.iyload = true
 				task.wait()
-				GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteYieldButton.Visible = false
+				--GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteYieldButton.Visible = false
 			end
 		end
 	})
 	if shared.iyload then 
-		GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteYieldButton.Visible = false
+		--GuiLibrary["MainGui"].ScaledGui.ClickGui.Exploit.ScrollingFrame.InfiniteYieldButton.Visible = false
 	end
 end)
 
