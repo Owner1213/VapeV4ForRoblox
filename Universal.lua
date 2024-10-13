@@ -6249,6 +6249,10 @@ run(function()
 					shared.noties = Enum.EasingStyle[EasingStyle.Value] or Enum.EasingStyle.Sine
 					shared.notid = Duration.Value or 3
 				until not CustomNotif.Enabled
+			else
+				shared.notied = nil
+				shared.noties = nil
+				shared.notid = nil
 			end
 		end
 	})
