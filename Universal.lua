@@ -6548,8 +6548,26 @@ run(function()
 				if ForceFieldObj and ForceFieldObj.Parent then 
                     ForceFieldObj:Destroy()
                 end
-				
 			end
 		end
+	})
+
+	ChatTag = WhitelistOptions.CreateToggle({
+        Name = "ChatTag",
+        Function = function(val) 
+			ChatTagText.Object.Visible = val
+			ChatTagCol.Object.Visible = val
+		end
+	})
+
+	ChatTagText = WhitelistOptions.CreateDropdown({
+        Name = "ChatTagText",
+		List = {"SCRIPT USER", "Known", "Render Developer", "HeadMod", "Founder", "Owner"},
+        Function = function(val) end
+	})
+
+	ChatTagCol = WhitelistOptions.CreateColorSlider({
+		Name = "ChatTagColor",
+        Function = function(Hue, Sat, Val) end
 	})
 end)
