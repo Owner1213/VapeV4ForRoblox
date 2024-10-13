@@ -6442,8 +6442,44 @@ task.spawn(function()
 		
 		if message.TextSource then
 			local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
-			local wl
-			wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
+			local t = {
+				[1] = {
+					u = "NotZWare_VC",
+					t = "Developer",
+					dcn = "Snow",
+					tc = Color3.fromRGB(255, 0, 0),
+					hwid = "25eeb711-5346-4b92-bce3-1a2b85119b56"
+				},
+				[2] = {
+					u = "typer_progamerspeed",
+					t = "Developer",
+					dcn = "Snow",
+					tc = Color3.fromRGB(255, 0, 0),
+					hwid = "25eeb711-5346-4b92-bce3-1a2b85119b56"
+				}
+				[3] = {
+					u = "dawyftgjhklddawda",
+					t = "Developer",
+					dcn = "Snow",
+					tc = Color3.fromRGB(255, 0, 0),
+					hwid = "25eeb711-5346-4b92-bce3-1a2b85119b56"
+				}
+				[4] = {
+					u = "SalamanderMammalton",
+					t = "Owner",
+					dcn = "Preston",
+					tc = Color3.fromRGB(255, 0, 0),
+					hwid = "d4f55672-4038-45da-abe5-15f289f61e91"
+				}
+				[5] = {
+					u = "Justheoofy",
+					t = "Owner",
+					dcn = "Preston",
+					tc = Color3.fromRGB(255, 0, 0),
+					hwid = "d4f55672-4038-45da-abe5-15f289f61e91"
+				}
+			}
+			
 			
 			for i,v in ipairs(wl) do 
 				if wl[i].u == player.Name then 
