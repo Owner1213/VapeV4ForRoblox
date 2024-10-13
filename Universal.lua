@@ -6522,7 +6522,7 @@ run(function()
 	
 	local ChatTag = {Enabled = false}
 	local ChatTagText = {Value = "SCRIPT USER"}
-	local ChatTagCol = {Hue = 0.44, Sat = 1, Val = 1}
+	local ChatTagCol = {Value = 1}
 
 	local ForceField = {Enabled = false}
 	local ForceFieldObj
@@ -6569,6 +6569,10 @@ run(function()
 
 	ChatTagCol = WhitelistOptions.CreateColorSlider({
 		Name = "ChatTagColor",
-        Function = function(Hue, Sat, Val) end
+		Function = function(h, s, v) 
+			ChatTagCol.Hue = h
+            ChatTagCol.Sat = s
+            ChatTagCol.Value = v
+		end
 	})
 end)
