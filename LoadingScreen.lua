@@ -1,26 +1,26 @@
 repeat task.wait() until game:IsLoaded()
 task.wait(1)
-local LoadingScreen = Instance.new("ScreenGui")
-local Main = Instance.new("Frame")
-local ImageLabel = Instance.new("ImageLabel")
-local TextLabel = Instance.new("TextLabel")
-local UIGradient = Instance.new("UIGradient")
-local UIPadding = Instance.new("UIPadding")
-local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
-local Version = Instance.new("TextLabel")
-local UIGradient_2 = Instance.new("UIGradient")
-local UIPadding_2 = Instance.new("UIPadding")
-local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
-local Bar = Instance.new("Frame")
-local ImageLabel_2 = Instance.new("ImageLabel")
-local Bar2 = Instance.new("Frame")
-local UIGradient_3 = Instance.new("UIGradient")
+local LoadingScreen = Instance.new("ScreenGui") task.wait(.1)
+local Main = Instance.new("Frame") task.wait(.1)
+local ImageLabel = Instance.new("ImageLabel") task.wait(.1)
+local TextLabel = Instance.new("TextLabel") task.wait(.1)
+local UIGradient = Instance.new("UIGradient") task.wait(.1)
+local UIPadding = Instance.new("UIPadding") task.wait(.1)
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint") task.wait(.1)
+local Version = Instance.new("TextLabel") task.wait(.1)
+local UIGradient_2 = Instance.new("UIGradient") task.wait(.1)
+local UIPadding_2 = Instance.new("UIPadding") task.wait(.1)
+local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint") task.wait(.1)
+local Bar = Instance.new("Frame") task.wait(.1)
+local ImageLabel_2 = Instance.new("ImageLabel") task.wait(.1)
+local Bar2 = Instance.new("Frame") task.wait(.1)
+local UIGradient_3 = Instance.new("UIGradient") task.wait(.1)
 
 --Properties:
 
 LoadingScreen.Name = "LoadingScreen"
 LoadingScreen.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
---LoadingScreen.OnTopOfCoreBlur = true
+LoadingScreen.OnTopOfCoreBlur = true
 LoadingScreen.IgnoreGuiInset = true
 LoadingScreen.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
