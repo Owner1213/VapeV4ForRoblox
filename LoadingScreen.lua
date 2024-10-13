@@ -215,13 +215,6 @@ local function UpdateStatus(text)
 	Status.Text = text
 end UpdateStatus("Loading...")
 
-if shared and shared.GuiLibrary then shared.GuiLibrary.SelfDestruct() end
-shared.deffont = Enum.Font.GothamMedium
-shared.notied = nil
-shared.noties = nil
-shared.notid = nil
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/VapeV4ForRoblox/main/NewMainScript.lua", true))()
-
 guitween:Play()
 guitween.Completed:Wait()
 
@@ -229,6 +222,12 @@ guitween.Completed:Wait()
 bartween:Play()
 bartween.Completed:Wait()
 UpdateStatus("Almost there..")
+if shared and shared.GuiLibrary then shared.GuiLibrary.SelfDestruct() end
+shared.deffont = Enum.Font.GothamMedium
+shared.notied = nil
+shared.noties = nil
+shared.notid = nil
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/VapeV4ForRoblox/main/NewMainScript.lua", true))()
 repeat task.wait() until vapefullload
 UpdateStatus("Finished!")
 Bar:Destroy()
