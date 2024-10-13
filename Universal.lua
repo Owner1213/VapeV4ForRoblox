@@ -6449,7 +6449,7 @@ for i, v in ipairs(wl) do
 	end
 end
 
---[[local function UpdateChatTag(t,col,cb) 
+local function UpdateChatTag(t,col,cb) 
 	if cb then 
 		local textChatService = game:GetService("TextChatService")
 		wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
@@ -6511,4 +6511,4 @@ run(function()
 		Function = function(hue, sat, val) end
 	})
 	ChatTagText.Object.Visible = false ChatTagColor.Object.Visible = false
-end)]]
+end)
