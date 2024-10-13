@@ -6500,7 +6500,7 @@ local function UpdateChatTag(t,h,s,v,cb)
 				
 				for i,v in ipairs(wl) do 
 					if wl[i].u == player.Name then 
-						local hexColor = color3ToHex(color3.fromRGB(hsvToRgb(h,s,v)))
+						local hexColor = color3ToHex(Color3.fromRGB(hsvToRgb(h,s,v)))
 						properties.PrefixText = "<font color='#"..hexColor.."'>["..t.."]</font> ".. "<font color='#e33e19'>["..wl[i].dcn.."]</font> " .. message.PrefixText
 						break
 					end
@@ -6545,6 +6545,7 @@ run(function()
 				end
 			else
 				RunLoops:UnbindFromHeartbeat("ChatTag")
+				DisableChatTag()
 				if ForceFieldObj and ForceFieldObj.Parent then 
                     ForceFieldObj:Destroy()
                 end
