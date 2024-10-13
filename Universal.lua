@@ -6528,4 +6528,9 @@ run(function()
             --ChatTagCol.Value = v
 		end
 	})
+
+	ForceField = WhitelistOptions.CreateToggle({
+        Name = "ForceField",
+        Function = function(val) end
+	})
 end)
