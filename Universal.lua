@@ -6132,7 +6132,7 @@ run(function()
 	})
 end)
 
---[[run(function() 
+run(function() 
 	local reset = {Enabled = false}
 
 	reset = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton({
@@ -6151,7 +6151,7 @@ end)
 	})
 end)
 
-run(function() 
+--[[run(function() 
 	local fixcam = {Enabled = false}
 	
 	local camsbj, camtype, cmzd, cmxzd, cammode;
