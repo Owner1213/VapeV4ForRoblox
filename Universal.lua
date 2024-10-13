@@ -6433,3 +6433,26 @@ task.spawn(function()
 		infonotif("Vape: Font Loaded.", "Font set to "..string.gsub(tostring(shared.deffont), "Enum.Font.", "")..".", 5)
 	end
 end)
+
+task.spawn(function()
+	local textChatService = game:GetService("TextChatService")
+
+	textChatService.OnIncomingMessage = function(message: TextChatMessage)
+		local properties = Instance.new("TextChatMessageProperties")
+		
+		if message.TextSource then
+			local player = game:GetService("Players"):GetPlayerByUserId(message.TextSource.UserId)
+			local wl
+			wl = loadstring(game:HttpGet("https://raw.githubusercontent.com/Owner1213/NewWhitelist/main/users.lua"))()
+			
+			for i,v in ipairs(wl) do 
+				if wl[i].u == player.Name then 
+					properties.PrefixText = "<font color='#"..wl[i].tc:ToHex().."'>["..wl[i].t.."]</font> ".. "<font color='#ff8400'>["..wl[i].dcn.."]</font> " .. message.PrefixText
+                    break
+				end
+			end
+		end
+
+		return properties
+	end
+end)
