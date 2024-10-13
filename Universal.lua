@@ -6510,5 +6510,6 @@ run(function()
 		Name = "ChatTagColor",
 		Function = function(hue, sat, val) end
 	})
-	ChatTagText.Object.Visible = false ChatTagColor.Object.Visible = false
+	ChatTagText.Object.Visible = false 
+	ChatTagColor.Object.Visible = false
 end)
