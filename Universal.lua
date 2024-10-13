@@ -6281,7 +6281,7 @@ run(function()
 end)
 
 
---[[run(function()
+run(function()
 	local FPS = {}
 	local FPSLabel
 	FPS = GuiLibrary.CreateLegitModule({
@@ -6429,7 +6429,7 @@ run(function()
 	createKeystroke(Enum.KeyCode.Space, UDim2.new(0, 0, 0, 83), UDim2.new(0, 25, 0, -10))
 end)
 
-task.spawn(function() 
+--[[task.spawn(function() 
 	if shared.deffont and shared.deffont ~= Enum.Font.Arial then 
 		infonotif("Vape: Font Loaded.", "Font set to "..string.gsub(tostring(shared.deffont), "Enum.Font.", "")..".", 5)
 	end
