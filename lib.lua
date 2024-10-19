@@ -13,6 +13,8 @@ loaderV3.Name = "loaderV3"
 loaderV3.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 loaderV3.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 loaderV3.ResetOnSpawn = false
+loaderV3.IgnoreGuiInset = true
+loaderV3.OnTopOfCoreBlur = true
 lib["MainGui"] = loaderV3
 
 background.Name = "background"
