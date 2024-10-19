@@ -82,11 +82,7 @@ icon.Image = "rbxassetid://11293981586"
 icon.ImageTransparency = 0.200
 
 
-local function PGCM_script() -- close.close_handler 
-	local scr = Instance.new('LocalScript')
-	scr.Name = "close_handler"
-	scr.Parent = close
-
+local function PGCM_script()
 	close.MouseButton1Click:Once(function() 
 		lib.MainGui:Destroy()	
 	end)
@@ -129,11 +125,7 @@ lib["CreateScrollGui"] = function(name, visible)
 	padding.PaddingRight = UDim.new(0, 5)
 	padding.PaddingTop = UDim.new(0, 5)
 	
-	local function QNKLSAB_script() -- main.hover_handler 
-		local scr = Instance.new('LocalScript')
-		scr.Name = "hover_handler"
-		scr.Parent = main
-
+	local function QNKLSAB_script()
 		local tween_service = game:GetService("TweenService")
 		local info = TweenInfo.new(.2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out)
 
@@ -243,10 +235,6 @@ lib["CreateButton"] = function(name, gui, ico, func, noicon, pht)
 	-- Scripts:
 
 	local function NUYZ_script()
-		local scr = Instance.new('LocalScript')
-		scr.Name = string.lower(name).."_handler"
-		scr.Parent = main
-
 		main.MouseButton1Click:Connect(func)
 	end
 	coroutine.wrap(NUYZ_script)()
