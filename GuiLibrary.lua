@@ -3740,6 +3740,7 @@ if shared.VapeExecuted then
 				--560
 			end
 		end)
+		uilistlayout.Padding = UDim.new(0,2)
 		local noexpand = false
 		dragGUI(windowtitle)
 		GuiLibrary.ObjectsThatCanBeSaved[argstablemain2["Name"].."Window"] = {["Object"] = windowtitle, ["ChildrenObject"] = children, ["Type"] = "Window", ["Api"] = windowapi, ["SortOrder"] = 0}
@@ -3777,6 +3778,9 @@ if shared.VapeExecuted then
 			button.BorderSizePixel = 0
 			button.BackgroundColor3 = Color3.fromRGB(26, 25, 26)
 			button.Text = ""
+			local buttoncorner = Instance.new("UICorner")
+			buttoncorner.CornerRadius = UDim.new(0, 6)
+            buttoncorner.Parent = button
 			--button.LayoutOrder = amount
 			button.Parent = children
 			local buttonactiveborder = Instance.new("Frame")
