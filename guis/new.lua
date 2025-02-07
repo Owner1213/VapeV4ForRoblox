@@ -14,12 +14,12 @@ local mainapi = {
 	Profile = 'default',
 	Profiles = {},
 	RainbowSpeed = {Value = 1},
-	RainbowUpdateSpeed = {Value = 60},
+	RainbowUpdateSpeed = {Value = 144},
 	RainbowTable = {},
 	Scale = {Value = 1},
 	ThreadFix = setthreadidentity and true or false,
 	ToggleNotifications = {},
-	Version = '4.18',
+	Version = '4.19',
 	Windows = {}
 }
 
@@ -52,10 +52,10 @@ local tween = {
 }
 local uipallet = {
 	Main = Color3.fromRGB(26, 25, 26),
-	Text = Color3.fromRGB(200, 200, 200),
-	Font = Font.fromEnum(Enum.Font.Arial),
-	FontSemiBold = Font.fromEnum(Enum.Font.Arial, Enum.FontWeight.SemiBold),
-	Tween = TweenInfo.new(0.16, Enum.EasingStyle.Linear)
+	Text = Color3.fromRGB(255, 255, 2555),
+	Font = Font.fromEnum(Enum.Font.Montserrat, Enum.FontWeight.Light),
+	FontSemiBold = Font.fromEnum(Enum.Font.Montserrat, Enum.FontWeight.SemiBold),
+	Tween = TweenInfo.new(1, Enum.EasingStyle.Exponential)
 }
 
 local getcustomassets = {
@@ -155,7 +155,7 @@ end
 
 local function addCorner(parent, radius)
 	local corner = Instance.new('UICorner')
-	corner.CornerRadius = radius or UDim.new(0, 5)
+	corner.CornerRadius = radius or UDim.new(0, 7)
 	corner.Parent = parent
 
 	return corner
@@ -222,6 +222,7 @@ local function addTooltip(gui, text)
 		)
 		tooltip.Visible = toolblur.Visible
 	end
+	addCorner(tooltip)
 
 	gui.MouseEnter:Connect(function(x, y)
 		local tooltipSize = getfontsize(text, tooltip.TextSize, uipallet.Font)
@@ -373,7 +374,8 @@ local function makeDraggable(gui, window)
 						dragPosition = (dragPosition // 3) * 3
 						position = (position // 3) * 3
 					end
-					gui.Position = UDim2.fromOffset((position.X / scale.Scale) + dragPosition.X, (position.Y / scale.Scale) + dragPosition.Y)
+					tweenService:Create(gui, uipallet.Tween, {Position = UDim2.fromOffset((position.X / scale.Scale) + dragPosition.X, (position.Y / scale.Scale) + dragPosition.Y)}):Play()
+					--gui.Position = UDim2.fromOffset((position.X / scale.Scale) + dragPosition.X, (position.Y / scale.Scale) + dragPosition.Y)
 				end
 			end)
 
@@ -1028,7 +1030,8 @@ components = {
 				arrow.Rotation = 90
 				dropdownchildren:Destroy()
 				dropdownchildren = nil
-				dropdown.Size = UDim2.new(1, 0, 0, 40)
+				--dropdown.Size = UDim2.new(1, 0, 0, 40)
+				tweenService:Create(dropdown, uipallet.Tween, {Size = UDim2.new(1, 0, 0, 40)}):Play()
 			end
 			optionsettings.Function(self.Value, mouse)
 		end
@@ -1036,7 +1039,8 @@ components = {
 		button.MouseButton1Click:Connect(function()
 			if not dropdownchildren then
 				arrow.Rotation = 270
-				dropdown.Size = UDim2.new(1, 0, 0, 40 + (#optionsettings.List - 1) * 26)
+				--dropdown.Size = UDim2.new(1, 0, 0, 40 + (#optionsettings.List - 1) * 26)
+				tweenService:Create(dropdown, uipallet.Tween, {Size = UDim2.new(1, 0, 0, 40 + (#optionsettings.List - 1) * 26)}):Play()
 				dropdownchildren = Instance.new('Frame')
 				dropdownchildren.Name = 'Children'
 				dropdownchildren.Size = UDim2.new(1, 0, 0, (#optionsettings.List - 1) * 26)
@@ -2601,7 +2605,7 @@ function mainapi:CreateGUI()
 		bind.Text = ''
 		bind.Parent = button
 		addTooltip(bind, 'Click to bind')
-		addCorner(bind, UDim.new(0, 4))
+		addCorner(bind, UDim.new(0, 6))
 		local icon = Instance.new('ImageLabel')
 		icon.Name = 'Icon'
 		icon.Size = UDim2.fromOffset(12, 12)
@@ -3642,8 +3646,8 @@ function mainapi:CreateCategory(categorysettings)
 	children.BackgroundTransparency = 1
 	children.BorderSizePixel = 0
 	children.Visible = false
-	children.ScrollBarThickness = 2
-	children.ScrollBarImageTransparency = 0.75
+	children.ScrollBarThickness = 0
+	children.ScrollBarImageTransparency = 1
 	children.CanvasSize = UDim2.new()
 	children.Parent = window
 	local divider = Instance.new('Frame')
@@ -3685,6 +3689,7 @@ function mainapi:CreateCategory(categorysettings)
 		modulebutton.TextSize = 14
 		modulebutton.FontFace = uipallet.Font
 		modulebutton.Parent = children
+		addCorner(modulebutton, UDim.new(0, 6))
 		local gradient = Instance.new('UIGradient')
 		gradient.Rotation = 90
 		gradient.Enabled = false
@@ -3703,7 +3708,7 @@ function mainapi:CreateCategory(categorysettings)
 		bind.AutoButtonColor = false
 		bind.Visible = false
 		bind.Text = ''
-		addCorner(bind, UDim.new(0, 4))
+		addCorner(bind, UDim.new(0, 6))
 		local bindicon = Instance.new('ImageLabel')
 		bindicon.Name = 'Icon'
 		bindicon.Size = UDim2.fromOffset(12, 12)
@@ -4119,8 +4124,8 @@ function mainapi:CreateOverlay(categorysettings)
 	children.BackgroundColor3 = color.Dark(uipallet.Main, 0.02)
 	children.BorderSizePixel = 0
 	children.Visible = false
-	children.ScrollBarThickness = 2
-	children.ScrollBarImageTransparency = 0.75
+	children.ScrollBarThickness = 0
+	children.ScrollBarImageTransparency = 1
 	children.CanvasSize = UDim2.new()
 	children.Parent = window
 	local windowlist = Instance.new('UIListLayout')
@@ -4284,8 +4289,8 @@ function mainapi:CreateCategoryList(categorysettings)
 	children.BackgroundTransparency = 1
 	children.BorderSizePixel = 0
 	children.Visible = false
-	children.ScrollBarThickness = 2
-	children.ScrollBarImageTransparency = 0.75
+	children.ScrollBarThickness = 0
+	children.ScrollBarImageTransparency = 1
 	children.CanvasSize = UDim2.new()
 	children.Parent = window
 	local childrentwo = Instance.new('Frame')
@@ -4824,8 +4829,8 @@ function mainapi:CreateSearch()
 	children.Position = UDim2.fromOffset(0, 34)
 	children.BackgroundTransparency = 1
 	children.BorderSizePixel = 0
-	children.ScrollBarThickness = 2
-	children.ScrollBarImageTransparency = 0.75
+	children.ScrollBarThickness = 0
+	children.ScrollBarImageTransparency = 1
 	children.CanvasSize = UDim2.new()
 	children.Parent = searchbkg
 	local divider = Instance.new('Frame')
@@ -4942,8 +4947,8 @@ function mainapi:CreateLegit()
 	children.Position = UDim2.fromOffset(14, 41)
 	children.BackgroundTransparency = 1
 	children.BorderSizePixel = 0
-	children.ScrollBarThickness = 2
-	children.ScrollBarImageTransparency = 0.75
+	children.ScrollBarThickness = 0
+	children.ScrollBarImageTransparency = 1
 	children.CanvasSize = UDim2.new()
 	children.Parent = window
 	local windowlist = Instance.new('UIGridLayout')
@@ -5054,8 +5059,8 @@ function mainapi:CreateLegit()
 		settingschildren.Position = UDim2.fromOffset(0, 41)
 		settingschildren.BackgroundColor3 = uipallet.Main
 		settingschildren.BorderSizePixel = 0
-		settingschildren.ScrollBarThickness = 2
-		settingschildren.ScrollBarImageTransparency = 0.75
+		settingschildren.ScrollBarThickness = 0
+		settingschildren.ScrollBarImageTransparency = 1
 		settingschildren.CanvasSize = UDim2.new()
 		settingschildren.Parent = settingspane
 		local settingswindowlist = Instance.new('UIListLayout')
@@ -6906,13 +6911,15 @@ mainapi:Clean(inputService.InputBegan:Connect(function(inputObj)
 		if mainapi.Binding then return end
 
 		if checkKeybinds(mainapi.HeldKeybinds, mainapi.Keybind, inputObj.KeyCode.Name) then
+			local state = clickgui.visible and " On" or " Off"
 			if mainapi.ThreadFix then
 				setthreadidentity(8)
 			end
 			for _, v in mainapi.Windows do
 				v.Visible = false
 			end
-			clickgui.Visible = not clickgui.Visible
+			clickgui.Visible = not clickgui.visible
+			shared.vape:CreateNotification("Vape", "Toggled clickgui".. state, 1)
 			tooltip.Visible = false
 			mainapi:BlurCheck()
 		end
